@@ -23,14 +23,13 @@ code {
     "home"
     "footer";
   grid-template-columns: 1fr;
-  grid-template-rows: 70px 1fr 100px;
+  grid-template-rows: 50px 1fr 100px;
   height: 100vh;
 }
 
 .header {
   grid-area: header;
-  background-color: #209cee;
-  color: #ffff;
+  color: #000;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,8 +42,8 @@ code {
 
 .footer {
   grid-area: footer;
-  background-color: #209cee;
-  color: #ffff;
+  background-color: #e8e8e8;
+  color: #000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,4 +58,81 @@ code {
   background-color: #e8e8e8;
   border-radius: 8px;
   padding: 1rem;
+}
+
+.menu-link {
+  margin-left: 1rem;
+}
+.drawer div a {
+  transition: all 0.2s ease-in-out;
+}
+.drawer div a:hover {
+  background: #e8e8e8;
+}
+
+.home {
+  height: 100vh;
+  width: 100%;
+}
+.home li {
+  list-style: none;
+}
+
+.media{
+  width: 100%;
+}
+
+.media ul {
+  position: absolute;
+  bottom:250px;
+  left: -140px;
+  transform: rotate(-90deg);
+}
+
+.media ul li{
+  font-size:10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  display: inline-block;
+  padding: 0 30px;
+}
+
+.text {
+    position: absolute;
+    bottom:200px;
+    left: 100px;
+    transform: rotate(-90deg);
+  
+}
+
+.text h1:after{
+  content: 'BELGRADE';
+  position: absolute;
+  top: 100px;
+  left: -80px;
+  color: #EFDE74;
+  z-index: -1;
+  font-size: 150px;
+  font-weight: 600;
+  letter-spacing: 8px;
+
+}
+
+.text h1{
+  font-size: 120px;
+  font-weight: 900;
+  letter-spacing: -10px;
+}
+
+.text h3{
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.text p{
+  width: 200px;
+  font-size: 12px;
+  margin-top: 30px;
+  font-weight: 500;
 }

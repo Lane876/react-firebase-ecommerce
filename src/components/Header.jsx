@@ -3,7 +3,9 @@ import logo from "../images/logo.png";
 import { Link, useHistory } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
 import app from "../config";
-import { Drawer } from "@material-ui/core";
+import { Drawer, Divider } from "@material-ui/core";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import CloseIcon from "@material-ui/icons/Close";
 
 const Header = ({ user }) => {
   const history = useHistory();
@@ -22,16 +24,91 @@ const Header = ({ user }) => {
   };
   return (
     <>
-      <Drawer open={open} onClose={() => setOpen(false)}>
+      <Drawer open={open} onClose={() => setOpen(false)} className="drawer">
         <div
           style={{
-            width: "400px",
-            padding: "1rem",
+            width: "350px",
             display: "flex",
             flexDirection: "column",
           }}
         >
-          <img src={logo} alt="menu logo" width="50px" />
+          <div
+            style={{
+              backgroundColor: "#e8e8e8",
+              width: "100%",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center",
+              }}
+            >
+              <AccountCircleIcon style={{ marginLeft: "1rem" }} />
+              {user ? (
+                <p style={{ marginLeft: "1rem" }}>Hello, {user?.displayName}</p>
+              ) : (
+                <p style={{ marginLeft: "1rem" }}>
+                  Hello,{" "}
+                  <span
+                    onClick={() => history.push("/login")}
+                    style={{ cursor: "pointer", color: "#209cee" }}
+                  >
+                    Sign In
+                  </span>
+                </p>
+              )}
+            </div>
+            <CloseIcon
+              style={{
+                marginRight: "3rem",
+                cursor: "pointer",
+                fontSize: "2rem",
+              }}
+              onClick={() => setOpen(false)}
+            />
+          </div>
+          <p style={{ color: "#9e9e9e", marginLeft: "1rem" }}>
+            SHOP BY CATEGORY
+          </p>
+          <Divider />
+          <Link to="/men" style={{ textDecoration: "none", color: "black" }}>
+            <p className="menu-link">MEN</p>
+          </Link>
+          <Divider />
+          <Link to="/women" style={{ textDecoration: "none", color: "black" }}>
+            <p className="menu-link">WOMEN</p>
+          </Link>
+          <Divider />
+          <Link to="/kids" style={{ textDecoration: "none", color: "black" }}>
+            <p className="menu-link">KIDS</p>
+          </Link>
+          <Divider />
+          <Link to="/shirts" style={{ textDecoration: "none", color: "black" }}>
+            <p className="menu-link">SHIRTS</p>
+          </Link>
+          <Divider />
+          <Link to="/jeans" style={{ textDecoration: "none", color: "black" }}>
+            <p className="menu-link">JEANS</p>
+          </Link>
+          <Divider />
+          <Link
+            to="/sneakers"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <p className="menu-link">SNEAKERS</p>
+          </Link>
+          <Divider />
+          <Link
+            to="/jackets"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <p className="menu-link">JACKETS</p>
+          </Link>
         </div>
       </Drawer>
       <div className="header">
@@ -39,9 +116,9 @@ const Header = ({ user }) => {
           <div style={{ marginRight: "1rem", cursor: "pointer" }}>
             <MenuIcon fontSize="large" onClick={handleOpen} />
           </div>
-          <Link to="/">
+          {/* <Link to="/">
             <img src={logo} alt="logo" width="50px" />
-          </Link>
+          </Link> */}
         </div>
 
         <div style={{ display: "flex" }}>
@@ -50,7 +127,7 @@ const Header = ({ user }) => {
               Hello, {user?.displayName}
             </div>
           )}
-          <Link to="/login" style={{ textDecoration: "none", color: "white" }}>
+          <Link to="/login" style={{ textDecoration: "none", color:"#000" }}>
             {user ? <div onClick={logout}>Sign Out</div> : <div>Sign In</div>}
           </Link>
         </div>
