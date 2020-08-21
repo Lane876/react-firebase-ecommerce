@@ -51,10 +51,12 @@ code {
 }
 
 .login-container {
-  width: 450px;
-  height: 450px;
+  width: 500px;
   margin: 6rem auto;
-  background-color: 	#E8E8E8 !important;
+}
+
+.lg {
+  background-color: #e8e8e8;
   border-radius: 8px;
   padding: 1rem;
 }
