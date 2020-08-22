@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../images/logo.png";
 import { Link, useHistory } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -16,12 +16,26 @@ const Header = ({ user }) => {
   };
 
   const [open, setOpen] = useState(false);
-  const handleClose = () => {
-    setOpen(false);
-  };
+  
   const handleOpen = () => {
     setOpen(true);
   };
+
+
+  let prevScrollPos = window.pageYOffset
+  console.log(prevScrollPos);
+  window.onscroll = function() {
+    let currentScrollPos = window.pageYOffset;
+  
+    if (prevScrollPos > currentScrollPos) {
+      document.getElementById('header').style.top = '0'
+    } else {
+      document.getElementById('header').style.top = '-100px'
+
+    }
+
+    prevScrollPos = currentScrollPos
+  }
   return (
     <>
       <Drawer open={open} onClose={() => setOpen(false)} className="drawer">
@@ -50,13 +64,13 @@ const Header = ({ user }) => {
             >
               <AccountCircleIcon style={{ marginLeft: "1rem" }} />
               {user ? (
-                <p style={{ marginLeft: "1rem" }}>Hello, {user?.displayName}</p>
+                <p style={{ marginLeft: "1rem" }}>Hello, <span style={{color:"#ffac33"}}>{user?.displayName}</span> </p>
               ) : (
                 <p style={{ marginLeft: "1rem" }}>
                   Hello,{" "}
                   <span
                     onClick={() => history.push("/login")}
-                    style={{ cursor: "pointer", color: "#209cee" }}
+                    style={{ cursor: "pointer", color: "#ffac33" }}
                   >
                     Sign In
                   </span>
@@ -111,8 +125,8 @@ const Header = ({ user }) => {
           </Link>
         </div>
       </Drawer>
-      <div className="header">
-        <div style={{ display: "flex", alignItems: "center" }}>
+      <div id="header">
+        <div style={{ display: "flex", alignItems: "center", padding:"1rem" }}>
           <div style={{ marginRight: "1rem", cursor: "pointer" }}>
             <MenuIcon fontSize="large" onClick={handleOpen} />
           </div>
@@ -121,13 +135,13 @@ const Header = ({ user }) => {
           </Link> */}
         </div>
 
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", }}>
           {user && (
             <div style={{ marginRight: "1rem" }}>
               Hello, {user?.displayName}
             </div>
           )}
-          <Link to="/login" style={{ textDecoration: "none", color:"#000" }}>
+          <Link to="/login" style={{ textDecoration: "none", color:"#000", marginRight:"1rem" }}>
             {user ? <div onClick={logout}>Sign Out</div> : <div>Sign In</div>}
           </Link>
         </div>

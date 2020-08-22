@@ -23,19 +23,22 @@ code {
     "home"
     "footer";
   grid-template-columns: 1fr;
-  grid-template-rows: 50px 1fr 100px;
+  grid-template-rows: 0px 1fr 100px;
   height: 100vh;
 }
 
-.header {
+#header {
   grid-area: header;
   color: #000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  background-color: rgba(0,0,0,.2);
+  transition:all .3s ease-in-out;
 }
-
 .home {
   grid-area: home;
 }
@@ -64,75 +67,32 @@ code {
   margin-left: 1rem;
 }
 .drawer div a {
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .drawer div a:hover {
   background: #e8e8e8;
 }
 
 .home {
-  height: 100vh;
   width: 100%;
-}
-.home li {
-  list-style: none;
-}
-
-.media{
-  width: 100%;
-}
-
-.media ul {
-  position: absolute;
-  bottom:250px;
-  left: -140px;
-  transform: rotate(-90deg);
-}
-
-.media ul li{
-  font-size:10px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  display: inline-block;
-  padding: 0 30px;
-}
-
-.text {
-    position: absolute;
-    bottom:200px;
-    left: 100px;
-    transform: rotate(-90deg);
   
 }
 
-.text h1:after{
-  content: 'BELGRADE';
+
+.each-slide > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: 100% 100%;
+
+  height: 300px;
+}
+
+.each-slide span {
+  padding: 20px;
+  font-size: 20px;
+  background: rgba(255, 255, 255, 0.3);
+  text-align: center;
   position: absolute;
-  top: 100px;
-  left: -80px;
-  color: #EFDE74;
-  z-index: -1;
-  font-size: 150px;
-  font-weight: 600;
-  letter-spacing: 8px;
-
-}
-
-.text h1{
-  font-size: 120px;
-  font-weight: 900;
-  letter-spacing: -10px;
-}
-
-.text h3{
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 1;
-}
-
-.text p{
-  width: 200px;
-  font-size: 12px;
-  margin-top: 30px;
-  font-weight: 500;
+  bottom: 0px;
 }

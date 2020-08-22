@@ -59,15 +59,15 @@ const Login = () => {
           <Link to="/" style={{ margin: "0 auto" }}>
             <img src={logo} alt="logo login" width="70px" />
           </Link>
-          <p style={{ color: "#209cee", fontWeight: "600" }}>Sing In</p>
+          <p style={{ color: "#ffac33", fontWeight: "600" }}>Sing In</p>
           <input
             style={{
               maxWidth: "450px",
               marginBottom: "1rem",
               padding: ".5rem",
               borderRadius: "5px",
-              border: "1px solid #209cee",
-              outlineColor: "#209cee",
+              border: "1px solid #ffac33",
+              outlineColor: "#ffac33",
             }}
             value={email}
             onChange={handleEmail}
@@ -79,8 +79,8 @@ const Login = () => {
               maxWidth: "450px",
               padding: ".5rem",
               borderRadius: "5px",
-              border: "1px solid #209cee",
-              outlineColor: "#209cee",
+              border: "1px solid #ffac33",
+              outlineColor: "#ffac33",
             }}
             value={password}
             onChange={handlePassword}
@@ -92,10 +92,10 @@ const Login = () => {
             style={{
               marginTop: "1rem",
               padding: ".5rem",
-              border: "1px solid #209cee",
+              border: "1px solid #ffac33",
               borderRadius: "8px",
-              outlineColor: "#209cee",
-              backgroundColor: "#209cee",
+              outlineColor: "#ffac33",
+              backgroundColor: "#ffac33",
               color: "#fff",
               fontWeight: "600",
               cursor: "pointer",
@@ -112,7 +112,7 @@ const Login = () => {
               to="#"
               style={{
                 textDecoration: "none",
-                color: "#209cee",
+                color: "#ffac33",
                 fontWeight: "600",
               }}
               onClick={resetPassword}
@@ -126,7 +126,7 @@ const Login = () => {
               to="/register"
               style={{
                 textDecoration: "none",
-                color: "#209cee",
+                color: "#ffac33",
                 fontWeight: "600",
               }}
             >
@@ -144,9 +144,9 @@ const Login = () => {
             paddingBottom: "2rem",
           }}
         >
-          <div style={{ width: "220px", border: ".5px solid #209cee" }} />
+          <div style={{ width: "220px", border: ".5px solid #ffac33" }} />
           <p style={{ margin: "0.5rem" }}>Or</p>
-          <div style={{ width: "220px", border: ".5px solid #209cee" }} />
+          <div style={{ width: "220px", border: ".5px solid #ffac33" }} />
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <button
@@ -154,9 +154,9 @@ const Login = () => {
               display: "flex",
               justifyContent: "space-evenly",
               alignItems: "center",
-              border: ".5px solid #209cee",
+              border: ".5px solid #ffac33",
               borderRadius: "8px",
-              outlineColor: "#209cee",
+              outlineColor: "#ffac33",
               width: "45%",
               cursor: "pointer",
             }}
@@ -170,9 +170,9 @@ const Login = () => {
               display: "flex",
               justifyContent: "space-evenly",
               alignItems: "center",
-              border: ".5px solid #209cee",
+              border: ".5px solid #ffac33",
               borderRadius: "8px",
-              outlineColor: "#209cee",
+              outlineColor: "#ffac33",
               width: "45%",
               cursor: "pointer",
             }}
