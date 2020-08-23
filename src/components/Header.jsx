@@ -16,26 +16,24 @@ const Header = ({ user }) => {
   };
 
   const [open, setOpen] = useState(false);
-  
+  const [show, setShow] = useState(true);
+
   const handleOpen = () => {
     setOpen(true);
   };
 
-
-  let prevScrollPos = window.pageYOffset
-  console.log(prevScrollPos);
-  window.onscroll = function() {
+  let prevScrollPos = window.pageYOffset;
+  window.onscroll = function () {
     let currentScrollPos = window.pageYOffset;
-  
-    if (prevScrollPos > currentScrollPos) {
-      document.getElementById('header').style.top = '0'
-    } else {
-      document.getElementById('header').style.top = '-100px'
 
+    if (prevScrollPos > currentScrollPos) {
+      setShow(true);
+    } else {
+      setShow(false);
     }
 
-    prevScrollPos = currentScrollPos
-  }
+    prevScrollPos = currentScrollPos;
+  };
   return (
     <>
       <Drawer open={open} onClose={() => setOpen(false)} className="drawer">
@@ -64,7 +62,10 @@ const Header = ({ user }) => {
             >
               <AccountCircleIcon style={{ marginLeft: "1rem" }} />
               {user ? (
-                <p style={{ marginLeft: "1rem" }}>Hello, <span style={{color:"#ffac33"}}>{user?.displayName}</span> </p>
+                <p style={{ marginLeft: "1rem" }}>
+                  Hello,{" "}
+                  <span style={{ color: "#ffac33" }}>{user?.displayName}</span>{" "}
+                </p>
               ) : (
                 <p style={{ marginLeft: "1rem" }}>
                   Hello,{" "}
@@ -125,8 +126,9 @@ const Header = ({ user }) => {
           </Link>
         </div>
       </Drawer>
-      <div id="header">
-        <div style={{ display: "flex", alignItems: "center", padding:"1rem" }}>
+      {/* <div id="header"> */}
+      <div className={show ? "headerShow" : "headerHide"}>
+        <div style={{ display: "flex", alignItems: "center", padding: "1rem" }}>
           <div style={{ marginRight: "1rem", cursor: "pointer" }}>
             <MenuIcon fontSize="large" onClick={handleOpen} />
           </div>
@@ -135,13 +137,20 @@ const Header = ({ user }) => {
           </Link> */}
         </div>
 
-        <div style={{ display: "flex", }}>
+        <div style={{ display: "flex" }}>
           {user && (
             <div style={{ marginRight: "1rem" }}>
               Hello, {user?.displayName}
             </div>
           )}
-          <Link to="/login" style={{ textDecoration: "none", color:"#000", marginRight:"1rem" }}>
+          <Link
+            to="/login"
+            style={{
+              textDecoration: "none",
+              color: "#000",
+              marginRight: "1rem",
+            }}
+          >
             {user ? <div onClick={logout}>Sign Out</div> : <div>Sign In</div>}
           </Link>
         </div>

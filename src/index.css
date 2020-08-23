@@ -27,7 +27,19 @@ code {
   height: 100vh;
 }
 
-#header {
+.headerHide {
+  grid-area: header;
+  color: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: -100px;
+  background-color: rgba(0,0,0,.2);
+  transition:all .3s ease-in-out;
+}
+.headerShow{
   grid-area: header;
   color: #000;
   display: flex;
@@ -41,6 +53,8 @@ code {
 }
 .home {
   grid-area: home;
+  /* overflow: hidden; */
+  
 }
 
 .footer {
@@ -78,21 +92,25 @@ code {
   
 }
 
-
-.each-slide > div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-size: 100% 100%;
-
-  height: 300px;
-}
-
-.each-slide span {
-  padding: 20px;
-  font-size: 20px;
-  background: rgba(255, 255, 255, 0.3);
-  text-align: center;
+.thunder{
+  transform: rotate(-90deg);
+  font-size: 5rem;
+  font-weight: 900;
   position: absolute;
-  bottom: 0px;
+  left: -1rem;
+  color: #ffac33;
+  letter-spacing: -8px;
 }
+
+
+.media{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  font-size: 10px;
+  letter-spacing: 2px;
+  transform: rotate(-90deg);
+  z-index: -1;
+}
+
+
