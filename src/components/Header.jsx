@@ -3,7 +3,7 @@ import logo from "../images/logo.png";
 import { Link, useHistory } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
 import app from "../config";
-import { Drawer, Divider } from "@material-ui/core";
+import { Drawer, Divider, Menu, MenuItem } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import CloseIcon from "@material-ui/icons/Close";
 
@@ -91,38 +91,28 @@ const Header = ({ user }) => {
             SHOP BY CATEGORY
           </p>
           <Divider />
-          <Link to="/men" style={{ textDecoration: "none", color: "black" }}>
+          <Link
+            to="/men"
+            style={{ textDecoration: "none", color: "black" }}
+            onClick={() => setOpen(false)}
+          >
             <p className="menu-link">MEN</p>
           </Link>
           <Divider />
-          <Link to="/women" style={{ textDecoration: "none", color: "black" }}>
+          <Link
+            to="/women"
+            style={{ textDecoration: "none", color: "black" }}
+            onClick={() => setOpen(false)}
+          >
             <p className="menu-link">WOMEN</p>
           </Link>
           <Divider />
-          <Link to="/kids" style={{ textDecoration: "none", color: "black" }}>
+          <Link
+            to="/kids"
+            style={{ textDecoration: "none", color: "black" }}
+            onClick={() => setOpen(false)}
+          >
             <p className="menu-link">KIDS</p>
-          </Link>
-          <Divider />
-          <Link to="/shirts" style={{ textDecoration: "none", color: "black" }}>
-            <p className="menu-link">SHIRTS</p>
-          </Link>
-          <Divider />
-          <Link to="/jeans" style={{ textDecoration: "none", color: "black" }}>
-            <p className="menu-link">JEANS</p>
-          </Link>
-          <Divider />
-          <Link
-            to="/sneakers"
-            style={{ textDecoration: "none", color: "black" }}
-          >
-            <p className="menu-link">SNEAKERS</p>
-          </Link>
-          <Divider />
-          <Link
-            to="/jackets"
-            style={{ textDecoration: "none", color: "black" }}
-          >
-            <p className="menu-link">JACKETS</p>
           </Link>
         </div>
       </Drawer>
@@ -132,9 +122,9 @@ const Header = ({ user }) => {
           <div style={{ marginRight: "1rem", cursor: "pointer" }}>
             <MenuIcon fontSize="large" onClick={handleOpen} />
           </div>
-          {/* <Link to="/">
+          <Link to="/">
             <img src={logo} alt="logo" width="50px" />
-          </Link> */}
+          </Link>
         </div>
 
         <div style={{ display: "flex" }}>
@@ -147,7 +137,7 @@ const Header = ({ user }) => {
             to="/login"
             style={{
               textDecoration: "none",
-              color: "#000",
+              color: "#fff",
               marginRight: "1rem",
             }}
           >

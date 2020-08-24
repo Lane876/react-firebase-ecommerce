@@ -29,6 +29,7 @@ code {
 
 .headerHide {
   grid-area: header;
+  z-index: 100;
   color: #000;
   display: flex;
   justify-content: space-between;
@@ -36,25 +37,26 @@ code {
   position: fixed;
   width: 100%;
   top: -100px;
-  background-color: rgba(0,0,0,.2);
-  transition:all .3s ease-in-out;
+  /* background-color: rgba(0, 0, 0, 0.2); */
+  transition: all 0.3s ease-in-out;
 }
-.headerShow{
+.headerShow {
+  z-index: 100;
+
   grid-area: header;
-  color: #000;
+  color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: fixed;
   width: 100%;
   top: 0px;
-  background-color: rgba(0,0,0,.2);
-  transition:all .3s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: all 0.3s ease-in-out;
 }
 .home {
   grid-area: home;
   /* overflow: hidden; */
-  
 }
 
 .footer {
@@ -89,10 +91,9 @@ code {
 
 .home {
   width: 100%;
-  
 }
 
-.thunder{
+.thunder {
   transform: rotate(-90deg);
   font-size: 5rem;
   font-weight: 900;
@@ -102,8 +103,7 @@ code {
   letter-spacing: -8px;
 }
 
-
-.media{
+.media {
   position: absolute;
   top: 50%;
   right: 0;
@@ -112,5 +112,3 @@ code {
   transform: rotate(-90deg);
   z-index: -1;
 }
-
-
