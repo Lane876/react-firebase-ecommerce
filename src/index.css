@@ -91,6 +91,7 @@ code {
 
 .home {
   width: 100%;
+  overflow-x: hidden;
 }
 
 .thunder {
@@ -111,4 +112,24 @@ code {
   letter-spacing: 2px;
   transform: rotate(-90deg);
   z-index: -1;
+}
+
+.slide-container {
+  width: 100vw;
+  /* height: 100vh; */
+  /* z-index: -1; */
+}
+.each-slide > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  height: 100vh;
+}
+
+.each-slide span {
+  padding: 20px;
+  font-size: 20px;
+  background: #efefef;
+  text-align: center;
 }

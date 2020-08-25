@@ -1,147 +1,101 @@
-import React, { useEffect } from "react";
-import gsap from "gsap";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Zoom } from "react-slideshow-image";
+import "react-slideshow-image/dist/styles.css";
+import men from "../images/men.jpg";
+import women from "../images/women.jpg";
+import { MdKeyboardArrowRight } from "react-icons/md";
+import { MdKeyboardArrowLeft } from "react-icons/md";
+import Men from "./Men";
+
+const properties = {
+  duration: 10000,
+  transitionDuration: 1000,
+  infinite: true,
+  scale: 1.4,
+  prevArrow: (
+    <div
+      style={{
+        width: "30px",
+        marginRight: "-30px",
+        fontSize: "4rem",
+        color: "#ffac33",
+        cursor: "pointer",
+      }}
+    >
+      <MdKeyboardArrowLeft />
+    </div>
+  ),
+  nextArrow: (
+    <div
+      style={{
+        width: "30px",
+        marginLeft: "-85px",
+        fontSize: "4rem",
+        color: "#ffac33",
+        cursor: "pointer",
+      }}
+    >
+      <MdKeyboardArrowRight />
+    </div>
+  ),
+};
 
 const Home = () => {
-  useEffect(() => {
-    gsap.from(".div1", {
-      duration: 1,
-      opacity: "0",
-      ease: "Expo.easeInOut",
-    });
-    gsap.from(".pmen", {
-      duration: 1,
-      opacity: "0",
-      ease: "Expo.easeInOut",
-    });
-    gsap.from(".div2", {
-      duration: 1,
-      delay: 0.3,
-      opacity: "0",
-      ease: "Expo.easeInOut",
-    });
-    gsap.from(".pwomen", {
-      duration: 1,
-      delay: 0.3,
-      opacity: "0",
-      ease: "Expo.easeInOut",
-    });
-    gsap.from(".div3", {
-      duration: 1,
-      delay: 0.6,
-      opacity: "0",
-      ease: "Expo.easeInOut",
-    });
-    gsap.from(".pkids", {
-      duration: 1,
-      delay: 0.6,
-      opacity: "0",
-      ease: "Expo.easeInOut",
-    });
-    gsap.from(".thunder", {
-      duration: 1,
-      delay: 1,
-      opacity: "0",
-      x: "-1rem",
-      ease: "Expo.easeInOut",
-    });
-    gsap.from(".media", {
-      duration: 1,
-      delay: 1.2,
-      opacity: "0",
-      x: "1rem",
-      ease: "Expo.easeInOut",
-    });
-  }, []);
-
+  const images = [men, women];
   return (
-    <div className="home">
+    <>
+      <div className="slide-container" style={{ width: "100vw" }}>
+        <Zoom {...properties}>
+          {images.map((each, index) => (
+            <div key={index} style={{ width: "100%", zIndex: "-1" }}>
+              <div
+                alt="land"
+                style={{
+                  backgroundImage: `url(${each})`,
+                  height: "100vh",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  width: "100%",
+                }}
+              />
+              {/* <img src={each} width="100%" /> */}
+            </div>
+          ))}
+        </Zoom>
+      </div>
       <div
         style={{
           display: "flex",
-          flexWrap: "wrap",
           justifyContent: "center",
           alignItems: "center",
-          marginTop: "7rem",
+          flexDirection: "column",
+          zIndex: "1",
+          height: "100vh",
         }}
       >
-        <p className="thunder">THUNDER</p>
-
-        <div style={{ position: "relative" }}>
-          <Link to="/men">
-            <img
-              style={{ maxWidth: "300px", maxHeight: "400px" }}
-              className="div1"
-              src="https://images.pexels.com/photos/412840/pexels-photo-412840.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-              alt="men"
-            />
-            <p
-              style={{
-                position: "absolute",
-                top: "70%",
-                left: "20%",
-                color: "#ffac33",
-                fontWeight: "900",
-                borderBottom: "4px solid white",
-              }}
-              className="pmen"
-            >
-              MEN
-            </p>
-          </Link>
+        <div
+          style={{
+            fontSize: "5rem",
+            color: "#ffac33",
+            fontWeight: "900",
+            letterSpacing: "20px",
+          }}
+        >
+          THUNDER
         </div>
-        <div style={{ position: "relative" }}>
-          <Link to="/kids">
-            <img
-              style={{ maxWidth: "300px", maxHeight: "400px" }}
-              className="div2"
-              src="https://images.unsplash.com/photo-1519238359922-989348752efb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=299&q=80"
-              alt="kids"
-            />
-            <p
-              style={{
-                position: "absolute",
-                top: "70%",
-                left: "20%",
-                color: "#ffac33",
-                fontWeight: "900",
-                borderBottom: "4px solid white",
-              }}
-              className="pkids"
-            >
-              KIDS
-            </p>
-          </Link>
+        <div
+          style={{
+            fontSize: "1rem",
+            color: "#ffac33",
+            fontWeight: "600",
+          }}
+        >
+          Lightning Fast Processors
         </div>
-        <div style={{ position: "relative", cursor: "pointer" }}>
-          <Link to="/women">
-            <img
-              style={{ maxWidth: "300px", maxHeight: "400px" }}
-              className="div3"
-              src="https://images.pexels.com/photos/2896401/pexels-photo-2896401.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-              alt="women"
-            />
-
-            <p
-              style={{
-                position: "absolute",
-                top: "70%",
-                left: "20%",
-                color: "#ffac33",
-                fontWeight: "900",
-                borderBottom: "4px solid white",
-              }}
-              className="pwomen"
-            >
-              WOMEN
-            </p>
-          </Link>
-        </div>
+        <button>Products</button>
       </div>
-      <div style={{ display: "flex" }} className="media">
-        TWITTER FACEBOOK INSTAGRAM
-      </div>
-    </div>
+      <Men />
+    </>
   );
 };
 

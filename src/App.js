@@ -42,9 +42,9 @@ function App() {
         <Route path="/women/:id" component={Women} />
         <Route path="/kids/:id" component={Kids} />
       </Switch>
-      {location.pathname !== "/login" && location.pathname !== "/register" && (
+      {/* {location.pathname !== "/login" && location.pathname !== "/register" && (
         <Footer />
-      )}
+      )} */}
     </div>
   );
 }

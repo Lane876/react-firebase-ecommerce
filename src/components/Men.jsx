@@ -1,7 +1,11 @@
 import React from "react";
 
 const Men = () => {
-  return <div>ememmem</div>;
+  return (
+    <div>
+      <div>men</div>
+    </div>
+  );
 };
 
 export default Men;
