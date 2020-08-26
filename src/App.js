@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import app from "./config";
-import Men from "./components/Men";
+import About from "./components/About";
 
 function App() {
   const location = useLocation();
@@ -36,7 +36,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-        <Route path="/men/:id" component={Men} />
+        <Route path="/about" component={About} />
       </Switch>
       {location.pathname !== "/login" && location.pathname !== "/register" && (
         <Footer />

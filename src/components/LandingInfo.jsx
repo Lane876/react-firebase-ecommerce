@@ -18,23 +18,26 @@ const LandingInfo = () => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          height:"100vh"
         }}
       >
+        <div>
+
         <div
           style={{
             fontSize: "4rem",
             color: "#ffac33",
             fontWeight: "900",
-            marginTop: "-100px",
-            letterSpacing: "3px",
+            letterSpacing: "5px",
           }}
-        >
+          >
           THUNDER
         </div>
-        <div style={{ color: "#fff", fontWeight: "600", marginBottom: "2rem" }}>
-          Blazing Fast Laptops
+        <div style={{ color: "#fff", fontWeight: "600", textAlign:"center", margin:"1rem" }}>
+          blazing fast tech
         </div>
-        <div style={{ padding: "2rem" }}>
+          </div>
+        <div style={{margin:"2rem"}}>
           <button className="landingbtn">PRODUCTS</button>
         </div>
         <Scroll />

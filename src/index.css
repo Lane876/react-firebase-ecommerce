@@ -1,7 +1,9 @@
 body {
+
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
   font-family: "Alata", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -14,7 +16,7 @@ code {
 }
 
 .headerHide {
-  z-index: 100;
+  z-index: 200;
   color: #000;
   display: flex;
   justify-content: space-between;
@@ -25,7 +27,7 @@ code {
   transition: all 0.3s ease-in-out;
 }
 .headerShow {
-  z-index: 100;
+  z-index: 200;
   color: #fff;
   display: flex;
   justify-content: space-between;

@@ -1,14 +1,27 @@
 import React from "react";
+import {Link} from 'react-scroll'
 
 const Scroll = () => {
   return (
+    <Link activeClass="active"
+      to="scroll"
+      spy={true}
+      smooth={true}
+      hashSpy={true}
+      offset={50}
+      duration={1000}
+      delay={100}
+      isDynamic={true}
+      ignoreCancelEvents={false}
+>
     <div
       style={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         position: "absolute",
-        bottom: "-10rem",
+        bottom: "1rem",
+        cursor:"pointer"
       }}
     >
       <div className="mouse">
@@ -21,6 +34,7 @@ const Scroll = () => {
         <span></span>
       </div>
     </div>
+    </Link>
   );
 };
 
