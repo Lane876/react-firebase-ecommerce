@@ -122,9 +122,9 @@ const Header = ({ user }) => {
           <div style={{ marginRight: "1rem", cursor: "pointer" }}>
             <MenuIcon fontSize="large" onClick={handleOpen} />
           </div>
-          <Link to="/">
+          <a href="/">
             <img src={logo} alt="logo" width="20px" />
-          </Link>
+          </a>
         </div>
 
         <div style={{ display: "flex" }}>

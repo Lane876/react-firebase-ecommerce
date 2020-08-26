@@ -20,8 +20,11 @@ const Scroll = () => {
         flexDirection: "column",
         alignItems: "center",
         position: "absolute",
+        left:"50%",
+        transform:"translate(-50%)",
         bottom: "1rem",
-        cursor:"pointer"
+        cursor:"pointer",
+        
       }}
     >
       <div className="mouse">
