@@ -123,7 +123,7 @@ const Header = ({ user }) => {
             <MenuIcon fontSize="large" onClick={handleOpen} />
           </div>
           <Link to="/">
-            <img src={logo} alt="logo" width="50px" />
+            <img src={logo} alt="logo" width="20px" />
           </Link>
         </div>
 

@@ -8,8 +8,6 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import app from "./config";
 import Men from "./components/Men";
-import Women from "./components/Women";
-import Kids from "./components/Kids";
 
 function App() {
   const location = useLocation();
@@ -39,12 +37,10 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/men/:id" component={Men} />
-        <Route path="/women/:id" component={Women} />
-        <Route path="/kids/:id" component={Kids} />
       </Switch>
-      {/* {location.pathname !== "/login" && location.pathname !== "/register" && (
+      {location.pathname !== "/login" && location.pathname !== "/register" && (
         <Footer />
-      )} */}
+      )}
     </div>
   );
 }
