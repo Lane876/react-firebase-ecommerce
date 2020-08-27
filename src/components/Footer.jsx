@@ -102,7 +102,8 @@ const Footer = () => {
           <textarea
             style={{
               fontFamily: "inherit",
-              // fontSize: "inherit",
+              fontSize: "inherit",
+              height:"200px",
               padding: ".5rem",
               borderRadius: "5px",
               border: "1px solid orange",

@@ -45,7 +45,7 @@ const LandingInfo = () => {
       spy={true}
       smooth={true}
       hashSpy={true}
-      offset={-45}
+      offset={-30}
       duration={1000}
       delay={100}
       isDynamic={true}

@@ -4,18 +4,19 @@ import { Link } from "react-router-dom";
 const Featured = () => {
   return (
     <div className='anchor2'>
-      <p
+      <div
         style={{
           color: "orange",
           fontSize: "3rem",
           letterSpacing: "5px",
           textAlign: "center",
           fontWeight: "900",
+          marginTop:"2rem"
         }}
         
       >
-        FEATURED
-      </p>
+        CATEGORIES
+      </div>
       <div
         className="featured"
         style={{
@@ -23,7 +24,7 @@ const Featured = () => {
           justifyContent: "space-around",
           alignItems: "center",
           flexWrap: "wrap",
-          padding: "1rem",
+          padding: "5rem",
         }}
       >
         <div style={{ position: "relative" }}>
