@@ -6,6 +6,7 @@ import app from "../config";
 import { Drawer, Divider, Menu, MenuItem } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import CloseIcon from "@material-ui/icons/Close";
+import { Link as Scroll } from "react-scroll";
 
 const Header = ({ user }) => {
   const history = useHistory();
@@ -92,28 +93,49 @@ const Header = ({ user }) => {
           </p>
           <Divider />
           <Link
-            to="/men"
+            to="/laptops"
             style={{ textDecoration: "none", color: "black" }}
             onClick={() => setOpen(false)}
           >
-            <p className="menu-link">MEN</p>
+            <p className="menu-link">Laptops</p>
           </Link>
           <Divider />
           <Link
-            to="/women"
+            to="/phones"
             style={{ textDecoration: "none", color: "black" }}
             onClick={() => setOpen(false)}
           >
-            <p className="menu-link">WOMEN</p>
+            <p className="menu-link">Phones</p>
           </Link>
           <Divider />
           <Link
-            to="/kids"
+            to="/pcs"
             style={{ textDecoration: "none", color: "black" }}
             onClick={() => setOpen(false)}
           >
-            <p className="menu-link">KIDS</p>
+            <p className="menu-link">Pc's</p>
           </Link>
+          <Divider />
+          <Scroll
+            activeClass="active"
+            to="footer"
+            spy={true}
+            smooth={true}
+            hashSpy={true}
+            offset={50}
+            duration={1000}
+            delay={100}
+            isDynamic={true}
+            ignoreCancelEvents={false}
+            style={{
+              textDecoration: "none",
+              color: "black",
+              cursor: "pointer",
+            }}
+            onClick={() => setOpen(false)}
+          >
+            <p className="menu-link">Contact</p>
+          </Scroll>
         </div>
       </Drawer>
       {/* <div id="header"> */}
@@ -122,9 +144,9 @@ const Header = ({ user }) => {
           <div style={{ marginRight: "1rem", cursor: "pointer" }}>
             <MenuIcon fontSize="large" onClick={handleOpen} />
           </div>
-          <a href="/">
+          <Link to="/">
             <img src={logo} alt="logo" width="20px" />
-          </a>
+          </Link>
         </div>
 
         <div style={{ display: "flex" }}>
