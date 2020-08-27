@@ -1,5 +1,6 @@
 import React from "react";
 import Scroll from "./Scroll";
+import { Link } from "react-scroll";
 
 const LandingInfo = () => {
   return (
@@ -38,7 +39,22 @@ const LandingInfo = () => {
         </div>
           </div>
         <div style={{margin:"2rem"}}>
+        <Link
+      activeClass="active"
+      to="anchor2"
+      spy={true}
+      smooth={true}
+      hashSpy={true}
+      offset={-45}
+      duration={1000}
+      delay={100}
+      isDynamic={true}
+      ignoreCancelEvents={false}
+    >
+
           <button className="landingbtn">PRODUCTS</button>
+    </Link>
+          
         </div>
         <Scroll />
       </div>

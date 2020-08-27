@@ -9,7 +9,7 @@ const Scroll = () => {
       spy={true}
       smooth={true}
       hashSpy={true}
-      offset={50}
+      offset={10}
       duration={1000}
       delay={100}
       isDynamic={true}

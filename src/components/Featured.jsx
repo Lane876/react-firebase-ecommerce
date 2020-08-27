@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Featured = () => {
   return (
-    <div>
+    <div className='anchor2'>
       <p
         style={{
           color: "orange",
@@ -12,6 +12,7 @@ const Featured = () => {
           textAlign: "center",
           fontWeight: "900",
         }}
+        
       >
         FEATURED
       </p>

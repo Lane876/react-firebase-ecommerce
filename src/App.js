@@ -9,6 +9,9 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import app from "./config";
 import About from "./components/About";
+import Laptops from "./components/Laptops";
+import Phones from "./components/Phones";
+import Pcs from "./components/Pcs";
 
 function App() {
   const location = useLocation();
@@ -39,6 +42,9 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/about" component={About} />
+          <Route path="/laptops" component={Laptops} />
+          <Route path="/phones" component={Phones} />
+          <Route path="/pcs" component={Pcs} />
         </Switch>
       </AnimatePresence>
       {location.pathname !== "/login" && location.pathname !== "/register" && (
