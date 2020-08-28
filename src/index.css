@@ -158,7 +158,6 @@ code {
   background-color: orange;
 }
 
-
 .featuredbtn {
   position: absolute;
   left: 50%;
@@ -181,4 +180,9 @@ code {
 .featuredbtn:hover {
   opacity: 1;
   letter-spacing: 5px;
+}
+
+.laptops {
+  padding: 2rem;
+  margin-top: 5rem;
 }

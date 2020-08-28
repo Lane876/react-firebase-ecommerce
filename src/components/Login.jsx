@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import logo from "../images/logo.png";
-import google from "../images/google.png";
+import { FcGoogle } from "react-icons/fc";
 import { Link, useHistory } from "react-router-dom";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import app from "../config";
 import firebase from "firebase";
+import { motion } from "framer-motion";
 
 const Login = () => {
   const auth = app.auth();
@@ -50,7 +51,12 @@ const Login = () => {
     e.preventDefault();
   }
   return (
-    <div className="login-container">
+    <motion.div
+      className="login-container"
+      exit={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+    >
       <div className="lg">
         <form
           onSubmit={handleSubmit}
@@ -162,7 +168,7 @@ const Login = () => {
             }}
             onClick={authWithGoogle}
           >
-            <img src={google} alt="google" width="20px" />
+            <FcGoogle size="20px" />
             <p style={{ marginLeft: "10px" }}>Sign In with Google</p>
           </button>
           <button
@@ -176,14 +182,14 @@ const Login = () => {
               width: "45%",
               cursor: "pointer",
             }}
-            // onClick={authWithFacebook}
+            onClick={authWithFacebook}
           >
             <FacebookIcon style={{ color: "#4267b2", marginRight: "10px" }} />
             Sign In with Facebook
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import logo from "../images/logo.png";
-import google from "../images/google.png";
+import { FcGoogle } from "react-icons/fc";
 import { Link, useHistory } from "react-router-dom";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import app from "../config";
 import firebase from "firebase";
+import { motion } from "framer-motion";
 
 const Register = () => {
   const history = useHistory();
@@ -56,7 +57,12 @@ const Register = () => {
   }
 
   return (
-    <div className="login-container">
+    <motion.div
+      className="login-container"
+      exit={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+    >
       <div className="lg">
         <form
           onSubmit={handleSubmit}
@@ -65,7 +71,7 @@ const Register = () => {
           <Link to="/" style={{ margin: "0 auto" }}>
             <img src={logo} alt="logo login" width="70px" />
           </Link>
-          <p style={{ color: "#209cee", fontWeight: "600" }}>Sing Up</p>
+          <p style={{ color: "orange", fontWeight: "600" }}>Sing Up</p>
 
           <input
             style={{
@@ -73,8 +79,8 @@ const Register = () => {
               marginBottom: "1rem",
               padding: ".5rem",
               borderRadius: "5px",
-              border: "1px solid #209cee",
-              outlineColor: "#209cee",
+              border: "1px solid orange",
+              outlineColor: "orange",
             }}
             value={name}
             onChange={handleChangeName}
@@ -87,8 +93,8 @@ const Register = () => {
               marginBottom: "1rem",
               padding: ".5rem",
               borderRadius: "5px",
-              border: "1px solid #209cee",
-              outlineColor: "#209cee",
+              border: "1px solid orange",
+              outlineColor: "orange",
             }}
             placeholder="email"
             type="email"
@@ -100,8 +106,8 @@ const Register = () => {
               maxWidth: "450px",
               padding: ".5rem",
               borderRadius: "5px",
-              border: "1px solid #209cee",
-              outlineColor: "#209cee",
+              border: "1px solid orange",
+              outlineColor: "orange",
             }}
             placeholder="password"
             type="password"
@@ -114,10 +120,10 @@ const Register = () => {
             style={{
               marginTop: "1rem",
               padding: ".5rem",
-              border: "1px solid #209cee",
+              border: "1px solid orange",
               borderRadius: "8px",
-              outlineColor: "#209cee",
-              backgroundColor: "#209cee",
+              outlineColor: "orange",
+              backgroundColor: "orange",
               color: "#fff",
               fontWeight: "600",
               cursor: "pointer",
@@ -136,7 +142,7 @@ const Register = () => {
               to="/login"
               style={{
                 textDecoration: "none",
-                color: "#209cee",
+                color: "orange",
                 fontWeight: "600",
               }}
             >
@@ -153,9 +159,9 @@ const Register = () => {
             alignItems: "center",
           }}
         >
-          <div style={{ width: "220px", border: ".5px solid #209cee" }} />
+          <div style={{ width: "220px", border: ".5px solid orange" }} />
           <p style={{ margin: "0.5rem" }}>Or</p>
-          <div style={{ width: "220px", border: ".5px solid #209cee" }} />
+          <div style={{ width: "220px", border: ".5px solid orange" }} />
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <button
@@ -163,15 +169,15 @@ const Register = () => {
               display: "flex",
               justifyContent: "space-evenly",
               alignItems: "center",
-              border: ".5px solid #209cee",
+              border: ".5px solid orange",
               borderRadius: "8px",
-              outlineColor: "#209cee",
+              outlineColor: "orange",
               width: "45%",
               cursor: "pointer",
             }}
             onClick={authWithGoogle}
           >
-            <img src={google} alt="google" width="20px" />
+            <FcGoogle size="20px" />
             <p style={{ marginLeft: "10px" }}>Sign In with Google</p>
           </button>
           <button
@@ -179,19 +185,20 @@ const Register = () => {
               display: "flex",
               justifyContent: "space-evenly",
               alignItems: "center",
-              border: ".5px solid #209cee",
+              border: ".5px solid orange",
               borderRadius: "8px",
-              outlineColor: "#209cee",
+              outlineColor: "orange",
               width: "45%",
               cursor: "pointer",
             }}
+            onClick={authWithFacebook}
           >
             <FacebookIcon style={{ color: "#4267b2", marginRight: "10px" }} />
             Sign In with Facebook
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

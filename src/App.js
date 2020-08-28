@@ -47,9 +47,9 @@ function App() {
           <Route path="/pcs" component={Pcs} />
         </Switch>
       </AnimatePresence>
-      {location.pathname !== "/login" && location.pathname !== "/register" && (
-        <Footer />
-      )}
+      {location.pathname !== "/login" &&
+        location.pathname !== "/register" &&
+        location.pathname !== "/laptops" && <Footer />}
     </div>
   );
 }

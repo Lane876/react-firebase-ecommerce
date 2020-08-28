@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import logo from "../images/logo.png";
 import { Link, useHistory } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
 import app from "../config";
-import { Drawer, Divider, Menu, MenuItem } from "@material-ui/core";
+import { Drawer, Divider } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import CloseIcon from "@material-ui/icons/Close";
 import { Link as Scroll } from "react-scroll";
