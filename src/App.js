@@ -7,7 +7,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import app from "./config";
+import app, { db } from "./config";
 import About from "./components/About";
 import Laptops from "./components/Laptops";
 import Phones from "./components/Phones";
@@ -16,6 +16,7 @@ import Pcs from "./components/Pcs";
 function App() {
   const location = useLocation();
   const auth = app.auth();
+  const [laptops, setLaptops] = useState([]);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -31,6 +32,12 @@ function App() {
     };
   }, [auth]);
 
+  useEffect(() => {
+    db.collection("Laptops").onSnapshot((snapshot) => {
+      setLaptops(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    });
+  }, []);
+
   return (
     <div className="container">
       {location.pathname !== "/login" && location.pathname !== "/register" && (
@@ -42,7 +49,10 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/about" component={About} />
-          <Route path="/laptops" component={Laptops} />
+          <Route
+            path="/laptops"
+            render={() => <Laptops user={user} laptops={laptops} />}
+          />
           <Route path="/phones" component={Phones} />
           <Route path="/pcs" component={Pcs} />
         </Switch>

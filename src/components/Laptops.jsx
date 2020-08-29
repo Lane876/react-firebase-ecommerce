@@ -4,14 +4,38 @@ import { AiOutlineSearch } from "react-icons/ai";
 import AddProduct from "./AddProduct";
 import { db } from "../config";
 
-const Laptops = () => {
-  const [laptops, setLaptops] = useState([]);
-  useEffect(() => {
-    db.collection("Laptops").onSnapshot((snapshot) => {
-      setLaptops(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    });
-  }, []);
-  console.log(laptops);
+const Laptops = ({ user, laptops }) => {
+  const admin = user?.uid === "hwdNGlf4e4Qh8488jCJlxpOjEwl1";
+  const [image, setImage] = useState(laptops.image);
+  const [desc, setDesc] = useState(laptops.desc);
+  const [price, setPrice] = useState(laptops.price);
+
+  const handleDelete = async (id) => {
+    await db.collection("Laptops").doc(id).delete();
+  };
+
+  const handleUpdate = async (id) => {
+    await db
+      .collection("Laptops")
+      .doc(id)
+      .set({
+        ...laptops,
+        image,
+        desc,
+        price,
+      });
+  };
+
+  const handleImage = (e) => {
+    setImage(e.target.value);
+  };
+  const handleDesc = (e) => {
+    setDesc(e.target.value);
+  };
+  const handlePrice = (e) => {
+    setPrice(e.target.value);
+  };
+
   return (
     <motion.div
       className="laptops"
@@ -19,6 +43,7 @@ const Laptops = () => {
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
     >
+      {admin && <AddProduct />}
       <div style={{ display: "flex", alignItems: "center" }}>
         <input
           placeholder="search"
@@ -55,13 +80,38 @@ const Laptops = () => {
             }}
           >
             <img src={laptop.image} width="200px" />
-            <p>{laptop.desc}</p>
-            <p>Price: ${laptop.price}</p>
-            <p>Rating: {laptop.rating}</p>
+            {!admin && <p>{laptop.desc}</p>}
+            {!admin && <p>Price: ${laptop.price}</p>}
+            {!admin && <p>Rating: {laptop.rating}</p>}
+            {!admin && <button>add to cart</button>}
+            {admin && (
+              <>
+                <input
+                  type="text"
+                  value={laptop.image}
+                  onChange={handleImage}
+                />
+                <input type="text" value={laptop.desc} onChange={handleDesc} />
+                <input
+                  type="text"
+                  value={laptop.price}
+                  onChange={handlePrice}
+                />
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <button onClick={() => handleDelete(laptop.id)}>
+                    delete
+                  </button>
+                  <button onClick={() => handleUpdate(laptop.id, i)}>
+                    update
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         ))}
       </div>
-      <AddProduct />
     </motion.div>
   );
 };

@@ -47,6 +47,7 @@ const AddProduct = () => {
         display: "flex",
         flexDirection: "column",
         width: "50%",
+        margin: "0px auto",
       }}
     >
       <select onChange={handleOption}>

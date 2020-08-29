@@ -103,7 +103,7 @@ const Footer = () => {
             style={{
               fontFamily: "inherit",
               fontSize: "inherit",
-              height:"200px",
+              height: "200px",
               padding: ".5rem",
               borderRadius: "5px",
               border: "1px solid orange",
@@ -193,6 +193,17 @@ const Footer = () => {
             </a>
           </div>
         </div>
+      </div>
+      <div style={{ width: "90%" }}>
+        <div
+          style={{
+            border: ".5px solid lightgray",
+            margin: "0px auto",
+          }}
+        />
+        <p style={{ textAlign: "center", color: "gray" }}>
+          Copyright © 2020 Thunder. All rights reserved
+        </p>
       </div>
     </div>
   );
