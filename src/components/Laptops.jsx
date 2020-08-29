@@ -6,24 +6,20 @@ import { db } from "../config";
 
 const Laptops = ({ user, laptops }) => {
   const admin = user?.uid === "hwdNGlf4e4Qh8488jCJlxpOjEwl1";
-  const [image, setImage] = useState(laptops.image);
-  const [desc, setDesc] = useState(laptops.desc);
-  const [price, setPrice] = useState(laptops.price);
+  const [image, setImage] = useState("");
+  const [desc, setDesc] = useState("");
+  const [price, setPrice] = useState("");
 
   const handleDelete = async (id) => {
     await db.collection("Laptops").doc(id).delete();
   };
 
   const handleUpdate = async (id) => {
-    await db
-      .collection("Laptops")
-      .doc(id)
-      .set({
-        ...laptops,
-        image,
-        desc,
-        price,
-      });
+    await db.collection("Laptops").doc(id).set({
+      image: image,
+      desc: desc,
+      price: price,
+    });
   };
 
   const handleImage = (e) => {
@@ -103,7 +99,7 @@ const Laptops = ({ user, laptops }) => {
                   <button onClick={() => handleDelete(laptop.id)}>
                     delete
                   </button>
-                  <button onClick={() => handleUpdate(laptop.id, i)}>
+                  <button onClick={() => handleUpdate(laptop.id)}>
                     update
                   </button>
                 </div>
@@ -111,6 +107,7 @@ const Laptops = ({ user, laptops }) => {
             )}
           </div>
         ))}
+        <div>{JSON.stringify(laptops)}</div>
       </div>
     </motion.div>
   );
