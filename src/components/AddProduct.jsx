@@ -1,44 +1,38 @@
 import React from "react";
 import { db } from "../config";
-import { useState } from "react";
 
-const AddProduct = () => {
-  const [option, setOption] = useState("Laptops");
-  const [image, setImage] = useState("");
-  const [desc, setDesc] = useState("");
-  const [price, setPrice] = useState("");
-  const [rating, setRating] = useState("");
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    db.collection(`${option}`).add({
-      image: image,
-      desc: desc,
-      price: price,
-      rating: rating,
+const AddProduct = ({ info, values, setValues, initialState }) => {
+  function handleInput(e) {
+    let { name, value } = e.target;
+    setValues({
+      ...values,
+      [name]: value,
     });
-    setImage("");
-    setDesc("");
-    setPrice("");
-    setRating("");
   }
 
-  function handleImage(e) {
-    setImage(e.target.value);
-  }
-  function handleDesc(e) {
-    setDesc(e.target.value);
-  }
-  function handlePrice(e) {
-    setPrice(e.target.value);
-  }
-  function handleRating(e) {
-    setRating(e.target.value);
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (values.id === "add") {
+      await db.collection(`${values.option}`).add({
+        ...values,
+        option: values.option,
+        image: values.image,
+        desc: values.desc,
+        price: values.price,
+        rating: values.rating,
+      });
+    } else {
+      await db.collection(`${values.option}`).doc(values.id).set({
+        option: values.option,
+        image: values.image,
+        desc: values.desc,
+        price: values.price,
+        rating: values.rating,
+      });
+    }
 
-  function handleOption(e) {
-    setOption(e.target.value);
-  }
+    setValues(initialState);
+  };
 
   return (
     <form
@@ -50,34 +44,38 @@ const AddProduct = () => {
         margin: "0px auto",
       }}
     >
-      <select onChange={handleOption}>
+      <select onChange={handleInput} value={values.option} name="option">
         <option>Laptops</option>
         <option>Phones</option>
         <option>Pcs</option>
       </select>
       <input
         type="text"
-        value={image}
+        value={values.image}
+        name="image"
         placeholder="image link"
-        onChange={handleImage}
+        onChange={handleInput}
       />
       <input
         type="text"
-        value={desc}
+        name="desc"
+        value={values.desc}
         placeholder="description"
-        onChange={handleDesc}
+        onChange={handleInput}
       />
       <input
         type="number"
-        value={price}
+        name="price"
+        value={values.price}
         placeholder="price"
-        onChange={handlePrice}
+        onChange={handleInput}
       />
       <input
         type="number"
-        value={rating}
+        name="rating"
+        value={values.rating}
         placeholder="rating"
-        onChange={handleRating}
+        onChange={handleInput}
       />
       <button type="submit">submit</button>
     </form>
