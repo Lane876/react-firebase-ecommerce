@@ -1,7 +1,7 @@
 import React from "react";
 import { db } from "../config";
 
-const AddProduct = ({ info, values, setValues, initialState }) => {
+const AddProduct = ({ values, setValues, initialState, setIsOpen, add }) => {
   function handleInput(e) {
     let { name, value } = e.target;
     setValues({
@@ -32,6 +32,7 @@ const AddProduct = ({ info, values, setValues, initialState }) => {
     }
 
     setValues(initialState);
+    setIsOpen(false)
   };
 
   return (
@@ -40,11 +41,9 @@ const AddProduct = ({ info, values, setValues, initialState }) => {
       style={{
         display: "flex",
         flexDirection: "column",
-        width: "50%",
-        margin: "0px auto",
       }}
     >
-      <select onChange={handleInput} value={values.option} name="option">
+      <select onChange={handleInput} value={values.option} name="option" className='inputFields'>
         <option>Laptops</option>
         <option>Phones</option>
         <option>Pcs</option>
@@ -55,6 +54,7 @@ const AddProduct = ({ info, values, setValues, initialState }) => {
         name="image"
         placeholder="image link"
         onChange={handleInput}
+        className='inputFields'
       />
       <input
         type="text"
@@ -62,6 +62,7 @@ const AddProduct = ({ info, values, setValues, initialState }) => {
         value={values.desc}
         placeholder="description"
         onChange={handleInput}
+        className='inputFields'
       />
       <input
         type="number"
@@ -69,6 +70,7 @@ const AddProduct = ({ info, values, setValues, initialState }) => {
         value={values.price}
         placeholder="price"
         onChange={handleInput}
+        className='inputFields'
       />
       <input
         type="number"
@@ -76,8 +78,9 @@ const AddProduct = ({ info, values, setValues, initialState }) => {
         value={values.rating}
         placeholder="rating"
         onChange={handleInput}
+        className='inputFields'
       />
-      <button type="submit">submit</button>
+      <button className='inputBtn' type="submit">{add ? 'ADD' : "UPDATE"}</button>
     </form>
   );
 };
