@@ -1,8 +1,36 @@
 import React from "react";
 import Scroll from "./Scroll";
 import { Link } from "react-scroll";
+import {TweenMax, Power3} from 'gsap'
+import { useEffect } from "react";
+
 
 const LandingInfo = () => {
+
+
+  useEffect(()=>{
+    TweenMax.to(
+      '.title',
+      1,
+      {
+        opacity: 1,
+        y:-40,
+        ease:Power3.easeOut,
+        delay:.2
+      }
+    )
+    TweenMax.to(
+      '.subtitle',
+      1,
+      {
+        opacity: 1,
+        y:-40,
+        ease:Power3.easeOut,
+        delay:.4
+      }
+    )
+  },[])
+
   return (
     <div
       style={{
@@ -25,16 +53,18 @@ const LandingInfo = () => {
         <div>
 
         <div
+        className='title'
           style={{
             fontSize: "4rem",
             color: "#ffac33",
             fontWeight: "900",
             letterSpacing: "5px",
+            opacity:"0"
           }}
           >
           THUNDER
         </div>
-        <div style={{ color: "#fff", fontWeight: "600", textAlign:"center", margin:"1rem" }}>
+        <div className='subtitle' style={{ color: "#fff", fontWeight: "600", textAlign:"center", margin:"1rem" }}>
           blazing fast tech
         </div>
           </div>

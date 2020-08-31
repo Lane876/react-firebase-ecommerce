@@ -1,7 +1,7 @@
 import React from "react";
 import { db } from "../config";
 
-const AddProduct = ({ values, setValues, initialState, setIsOpen, add }) => {
+const AddProduct = ({ values, setValues, initialState, setIsOpen, add, setAdd }) => {
   function handleInput(e) {
     let { name, value } = e.target;
     setValues({
@@ -33,6 +33,7 @@ const AddProduct = ({ values, setValues, initialState, setIsOpen, add }) => {
 
     setValues(initialState);
     setIsOpen(false)
+    setAdd(false)
   };
 
   return (

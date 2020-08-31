@@ -32,11 +32,7 @@ function App() {
     };
   }, [auth]);
 
-  useEffect(() => {
-    db.collection("Laptops").onSnapshot((snapshot) => {
-      setLaptops(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    });
-  }, []);
+  
 
   return (
     <div className="container">
@@ -53,12 +49,14 @@ function App() {
             path="/laptops"
             render={() => <Laptops user={user} laptops={laptops} />}
           />
-          <Route path="/phones" component={Phones} />
-          <Route path="/pcs" component={Pcs} />
+          <Route path="/phones" render={()=> <Phones user={user} />}/>
+          <Route path="/pcs" render={()=> <Pcs user={user} />}/>
         </Switch>
       </AnimatePresence>
       {location.pathname !== "/login" &&
         location.pathname !== "/register" &&
+        location.pathname !== "/phones" &&
+        location.pathname !== "/pcs" &&
         location.pathname !== "/laptops" && <Footer />}
     </div>
   );

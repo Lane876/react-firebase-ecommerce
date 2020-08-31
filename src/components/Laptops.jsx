@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { AiOutlineSearch } from "react-icons/ai";
 import AddProduct from "./AddProduct";
 import { db } from "../config";
-import Modal from 'react-modal'
-import {CgAddR} from 'react-icons/cg'
-import {MdDeleteForever} from 'react-icons/md'
-import {AiFillEdit} from 'react-icons/ai'
+import Modal from "react-modal";
+import { CgAddR } from "react-icons/cg";
+import { MdDeleteForever } from "react-icons/md";
+import { AiFillEdit } from "react-icons/ai";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 
+Modal.setAppElement("#root");
 
-Modal.setAppElement('#root')
-
-const Laptops = ({ user, laptops }) => {
+const Laptops = ({ user }) => {
   const admin = user?.uid === "hwdNGlf4e4Qh8488jCJlxpOjEwl1";
   const initialState = {
     id: "add",
@@ -22,32 +23,94 @@ const Laptops = ({ user, laptops }) => {
     price: "",
     rating: "",
   };
-
   const [values, setValues] = useState(initialState);
+  const [laptops, setLaptops] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [add, setAdd] = useState(false)
+  const [add, setAdd] = useState(false);
+  const [search, setSearch] = useState("");
+
+
+  useEffect(() => {
+    db.collection("Laptops").onSnapshot((snapshot) => {
+      setLaptops(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    });
+  }, []);
 
   const handleDelete = async (id) => {
-    if(window.confirm('Are you sure?')){
-      await db.collection("Laptops").doc(id).delete();
-
-    }
+    await db.collection("Laptops").doc(id).delete();
   };
+
+  const submit = (id) =>
+    confirmAlert({
+      customUI: ({ onClose }) => {
+        return (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "300px",
+              border: "1px solid orange",
+              padding: "1rem",
+              borderRadius: "5px",
+              backgroundColor: "rgba(255, 205, 97, 0.7)",
+            }}
+          >
+            <h1>Are you sure?</h1>
+            <div>You want to delete this file?</div>
+            <div
+              style={{
+                display: "flex",
+                width: "300px",
+                justifyContent: "space-around",
+                marginTop: "2rem",
+              }}
+            >
+              <button className="confirmBtn" onClick={onClose}>
+                No
+              </button>
+              <button
+                className="confirmBtn"
+                onClick={() => {
+                  handleDelete(id);
+                  onClose();
+                }}
+              >
+                Yes
+              </button>
+            </div>
+          </div>
+        );
+      },
+    });
 
   const handleEdit = (laptop) => {
     setValues(laptop);
-    setIsOpen(true)
+    setIsOpen(true);
   };
 
-  const handleAdd = () =>{
-    setIsOpen(true)
-    setAdd(true)
-  }
-  const handleClose = () =>{
-    setIsOpen(false)
-    setAdd(false)
-    setValues(initialState)
-  }
+  const handleAdd = () => {
+    setIsOpen(true);
+    setAdd(true);
+  };
+  const handleClose = () => {
+    setIsOpen(false);
+    setAdd(false);
+    setValues(initialState);
+  };
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const searchResult = (search) => {
+    return function (item) {
+      return item.desc.toLowerCase().includes(search.toLowerCase()) || !search;
+    };
+  };
+
+
 
   return (
     <motion.div
@@ -58,30 +121,39 @@ const Laptops = ({ user, laptops }) => {
     >
       {admin && (
         <>
-        <Modal isOpen={isOpen} onRequestClose={handleClose} style={{overlay:{
-          backgroundColor:"rgba(0,0,0,.5)"
-        }, content:{
-          backgroundColor:'#f4f4f4',
-          maxWidth:"450px",
-          maxHeight:"450px",
-          top:"50%",
-          left:"50%",
-          transform:"translate(-50%, -50%)"
-        }}}>
-
-        <AddProduct
-          values={values}
-          setValues={setValues}
-          initialState={initialState}
-          setIsOpen={setIsOpen}
-          add={add}
-          />
+          <Modal
+            isOpen={isOpen}
+            onRequestClose={handleClose}
+            style={{
+              overlay: {
+                backgroundColor: "rgba(0,0,0,.5)",
+              },
+              content: {
+                backgroundColor: "#f4f4f4",
+                maxWidth: "450px",
+                maxHeight: "450px",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+              },
+            }}
+          >
+            <AddProduct
+              values={values}
+              setValues={setValues}
+              initialState={initialState}
+              setIsOpen={setIsOpen}
+              add={add}
+              setAdd={setAdd}
+            />
           </Modal>
         </>
       )}
       <div style={{ display: "flex", alignItems: "center" }}>
         <input
-          placeholder="search"
+        
+          type='text'
+          placeholder="Search..."
           style={{
             padding: "1rem",
             width: "400px",
@@ -89,14 +161,23 @@ const Laptops = ({ user, laptops }) => {
             borderRadius: "8px",
             outlineColor: "orange",
           }}
+          onChange={handleSearch}
         />
         <AiOutlineSearch
           size="30px"
-          style={{ marginLeft: "-40px", color: "orange", cursor: "pointer" }}
+          style={{ marginLeft: "-40px", color: "orange" }}
         />
-      <div style={{cursor:"pointer", marginLeft:"3rem"}} onClick={handleAdd}><CgAddR size='30px' style={{color:"green"}}/></div>
+        {admin && (
+          <div
+            style={{ cursor: "pointer", marginLeft: "3rem" }}
+            onClick={handleAdd}
+          >
+            <CgAddR size="30px" style={{ color: "green" }} />
+          </div>
+        )}
       </div>
       <div
+      
         style={{
           display: "flex",
           justifyContent: "center",
@@ -104,7 +185,7 @@ const Laptops = ({ user, laptops }) => {
           alignItems: "center",
         }}
       >
-        {laptops.map((laptop, i) => (
+        {laptops.filter(searchResult(search)).map((laptop, i) => (
           <div
             key={i}
             style={{
@@ -112,23 +193,39 @@ const Laptops = ({ user, laptops }) => {
               flexDirection: "column",
               alignItems: "flex-start",
               padding: "2rem",
+              width:"200px",
+              height:"400px",
+              border:".2px solid lightgray",
+              borderRadius:"5px",
+              margin:"1rem",
             }}
           >
-            <img src={laptop.image} width="200px" />
+          
+            <img src={laptop.image} width='100%'/>
             <p>{laptop.desc}</p>
             <p>Price: ${laptop.price}</p>
             <p>Rating: {laptop.rating}</p>
-            {!admin && <button>add to cart</button>}
+            {!admin && <button className="addToCartBtn">add to cart</button>}
             {admin && (
               <>
                 <div
-                  style={{ display: "flex", justifyContent: "space-between", width:"100%" }}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    width: "100%",
+                  }}
                 >
-                  <div style={{cursor:"pointer"}} onClick={() => handleEdit(laptop)}>
-                    <AiFillEdit size='30px' style={{color:"orange"}}/>
+                  <div
+                    style={{ cursor: "pointer" }}
+                    onClick={() => handleEdit(laptop)}
+                  >
+                    <AiFillEdit size="30px" style={{ color: "orange" }} />
                   </div>
-                  <div style={{cursor:"pointer"}} onClick={() => handleDelete(laptop.id)}>
-                    <MdDeleteForever size='30px' style={{color:"red"}}/>
+                  <div
+                    style={{ cursor: "pointer" }}
+                    onClick={() => submit(laptop.id)}
+                  >
+                    <MdDeleteForever size="30px" style={{ color: "red" }} />
                   </div>
                 </div>
               </>

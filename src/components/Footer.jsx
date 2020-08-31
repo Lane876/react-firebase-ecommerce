@@ -9,7 +9,6 @@ import {
   AiFillGoogleCircle,
 } from "react-icons/ai";
 import { FiInstagram } from "react-icons/fi";
-import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -201,7 +200,7 @@ const Footer = () => {
             margin: "0px auto",
           }}
         />
-        <p style={{ textAlign: "center", color: "gray" }}>
+        <p style={{ textAlign: "center", color: "gray", padding:"1rem" }}>
           Copyright © 2020 Thunder. All rights reserved
         </p>
       </div>
