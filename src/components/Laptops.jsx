@@ -111,7 +111,7 @@ const Laptops = ({ user }) => {
 
   const searchResult = (search) => {
     return function (item) {
-      return item.desc.toLowerCase().includes(search.toLowerCase()) || !search;
+      return item.title.toLowerCase().includes(search.toLowerCase()) || !search;
     };
   };
 

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../config";
-import { Zoom } from "react-slideshow-image";
-import "react-slideshow-image/dist/styles.css";
-import { MdKeyboardArrowRight } from "react-icons/md";
-import { MdKeyboardArrowLeft } from "react-icons/md";
-import Footer from './Footer'
+import Footer from "./Footer";
+import AwesomeSlider from "react-awesome-slider";
+import withAutoplay from "react-awesome-slider/dist/autoplay";
+import "react-awesome-slider/dist/styles.css";
+import 'react-awesome-slider/dist/custom-animations/cube-animation.css';
 
 const LaptopDetails = (props) => {
   const [laptops, setLaptops] = useState([]);
@@ -27,99 +27,57 @@ const LaptopDetails = (props) => {
       });
   }, []);
 
-  const properties = {
-    duration: 6000,
-    autoplay: true,
-    pauseOnHover: false,
-    transitionDuration: 1000,
-    infinite: true,
-    scale: 1.4,
-    prevArrow: (
-      <div
-        style={{
-          fontSize: "3rem",
-          color: "#ffac33",
-          cursor: "pointer",
-        }}
-      >
-        <MdKeyboardArrowLeft />
-      </div>
-    ),
-    nextArrow: (
-      <div
-        style={{
-          fontSize: "3rem",
-          color: "#ffac33",
-          cursor: "pointer",
-        }}
-      >
-        <MdKeyboardArrowRight />
-      </div>
-    ),
-  };
-
-  const images = [
-    { image: laptops.image_def },
-    { image: laptops.image_1 },
-    { image: laptops.image_2 },
-    { image: laptops.image_3 },
-  ];
+  const AutoplaySlider = withAutoplay(AwesomeSlider);
 
   return (
     <>
-    <div
-      style={{
-        paddingTop: "6rem",
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-around",
-      }}
-    >
-      <div style={{width:"700px"}}>
-        <Zoom {...properties}>
-          {images.map((each, index) => (
-            <div
-              key={index}
-              style={{ width: "100%", height: "100%", zIndex: "-1" }}
-              
-            >
-              <div
-                alt="land"
-                style={{
-                  backgroundImage: `url(${each.image})`,
-                  height: "500px",
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              />
-            </div>
-          ))}
-        </Zoom>
-      </div>
       <div
         style={{
+          paddingTop: "6rem",
           display: "flex",
-          justifyContent: "flex-start",
-          flexDirection: "column",
-          minWidth: "40%",
-          height: "600px",
-          margin:"2rem"
+          flexWrap: "wrap",
+          justifyContent: "space-around",
         }}
-      >
-        <h2>{laptops.title}</h2>
-        <p>Specs: {laptops.desc}</p>
+        >
+        <AutoplaySlider
+          play={true}
+          cancelOnInteraction={true} // should stop playing on user interaction
+          interval={6000}
+          style={{width:"700px", height:"500px"}}
+          animation="cubeAnimation"
+          
+        >
+          <div data-src={laptops.image_def} style={{width:"80%", position:"absolute", top:"50%", left:"50%", transform:"translate(-50%, -50%"}}/>
+          <div data-src={laptops.image_1} style={{width:"80%", position:"absolute", top:"50%", left:"50%", transform:"translate(-50%, -50%"}}/>
+          <div data-src={laptops.image_2} style={{width:"80%", position:"absolute", top:"50%", left:"50%", transform:"translate(-50%, -50%"}}/>
+          <div data-src={laptops.image_3} style={{width:"80%", position:"absolute", top:"50%", left:"50%", transform:"translate(-50%, -50%"}}/>
+        </AutoplaySlider>
+
+        <slider />
         <div
           style={{
-            marginBottom: "4rem",
+            display: "flex",
+            justifyContent: "flex-start",
+            flexDirection: "column",
+            minWidth: "40%",
+            height: "600px",
+            margin: "2rem",
           }}
         >
-          ${laptops.price}
+          <h2>{laptops.title}</h2>
+          <p>Specs: {laptops.desc}</p>
+          <div
+            style={{
+              marginBottom: "4rem",
+            }}
+          >
+            ${laptops.price}
+          </div>
+          <button>add to cart</button>
         </div>
-        <button>add to cart</button>
       </div>
-    </div>
-      <Footer/>
-      </>
+      <Footer />
+    </>
   );
 };
 
