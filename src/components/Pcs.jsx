@@ -136,6 +136,7 @@ const Pcs = ({ user }) => {
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
+                borderRadius:"5px"
               },
             }}
           >
@@ -199,7 +200,7 @@ const Pcs = ({ user }) => {
               margin:"1rem"
             }}
           >
-            <img src={pc.image} width='100%' />
+            <img src={pc.image} width='100%' alt='pcs' />
             <p >{pc.desc}</p>
             <p>Price: ${pc.price}</p>
             <p>Rating: {pc.rating}</p>

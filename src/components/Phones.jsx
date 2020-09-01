@@ -132,6 +132,7 @@ const Phones = ({ user }) => {
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
+                borderRadius:"5px"
               },
             }}
           >
@@ -196,7 +197,7 @@ const Phones = ({ user }) => {
 
             }}
           >
-            <img src={phone.image} width='100%' />
+            <img src={phone.image} width='100%' alt='phones'/>
             <p style={{wordBreak:"break-word"}}>{phone.desc}</p>
             <p>Price: ${phone.price}</p>
             <p>Rating: {phone.rating}</p>

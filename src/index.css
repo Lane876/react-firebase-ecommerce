@@ -221,13 +221,17 @@ code {
   padding: .5rem;
   cursor: pointer;
   font-weight: 700;
-  border: 1px solid orange;
-  outline-color: orange;
+  border: 1px solid lightgray;
+  /* outline-color: orange; */
   background-color: #e8e8e8;
   letter-spacing: 2px;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   font-size: 1rem;
   width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%)
 }
 
 .phones {

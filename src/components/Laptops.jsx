@@ -9,6 +9,7 @@ import { MdDeleteForever } from "react-icons/md";
 import { AiFillEdit } from "react-icons/ai";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import {Link} from 'react-router-dom'
 
 
 Modal.setAppElement("#root");
@@ -18,8 +19,12 @@ const Laptops = ({ user }) => {
   const initialState = {
     id: "add",
     option: "Laptops",
-    image: "",
+    image_def: "",
+    image_1: "",
+    image_2: "",
+    image_3: "",
     desc: "",
+    title: "",
     price: "",
     rating: "",
   };
@@ -135,6 +140,7 @@ const Laptops = ({ user }) => {
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
+                borderRadius:"5px"
               },
             }}
           >
@@ -198,14 +204,21 @@ const Laptops = ({ user }) => {
               border:".2px solid lightgray",
               borderRadius:"5px",
               margin:"1rem",
+              position:"relative"
             }}
           >
+
           
-            <img src={laptop.image} width='100%'/>
-            <p>{laptop.desc}</p>
+            <Link to={`/laptop/${laptop.id}`}>
+            <img src={laptop.image_def} width='100%' alt='laptops'/>
+            </Link>
+            <p>{laptop.title}</p>
             <p>Price: ${laptop.price}</p>
             <p>Rating: {laptop.rating}</p>
-            {!admin && <button className="addToCartBtn">add to cart</button>}
+            <Link to={`/laptop/${laptop.id}`}>
+
+             <button className="addToCartBtn">Details</button>
+            </Link>
             {admin && (
               <>
                 <div

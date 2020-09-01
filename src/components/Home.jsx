@@ -4,6 +4,7 @@ import Slider from "./Slider";
 import LandingInfo from "./LandingInfo";
 import Featured from "./Featured";
 import { motion } from "framer-motion";
+import Footer from "./Footer";
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
       <LandingInfo />
       <About />
       <Featured />
+      <Footer/>
     </motion.div>
   );
 };

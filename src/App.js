@@ -12,11 +12,11 @@ import About from "./components/About";
 import Laptops from "./components/Laptops";
 import Phones from "./components/Phones";
 import Pcs from "./components/Pcs";
+import LaptopDetails from "./components/LaptopDetails";
 
 function App() {
   const location = useLocation();
   const auth = app.auth();
-  const [laptops, setLaptops] = useState([]);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -47,17 +47,25 @@ function App() {
           <Route path="/about" component={About} />
           <Route
             path="/laptops"
-            render={() => <Laptops user={user} laptops={laptops} />}
+            render={() => <Laptops user={user} />}
+          />
+          <Route
+            path="/laptop/:id"
+            component={LaptopDetails}
+            // render={() => <LaptopDetails user={user}/>}
           />
           <Route path="/phones" render={()=> <Phones user={user} />}/>
           <Route path="/pcs" render={()=> <Pcs user={user} />}/>
         </Switch>
       </AnimatePresence>
-      {location.pathname !== "/login" &&
+      {/* {location.pathname !== "/login" &&
         location.pathname !== "/register" &&
         location.pathname !== "/phones" &&
         location.pathname !== "/pcs" &&
-        location.pathname !== "/laptops" && <Footer />}
+        location.pathname !== "/laptops" &&
+        location.pathname !== "/laptop/:id" &&
+        
+        <Footer />} */}
     </div>
   );
 }
