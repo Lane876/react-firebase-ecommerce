@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { AiOutlineSearch } from "react-icons/ai";
 import AddProduct from "./AddProduct";
@@ -9,8 +9,7 @@ import { MdDeleteForever } from "react-icons/md";
 import { AiFillEdit } from "react-icons/ai";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-import {Link} from 'react-router-dom'
-
+import { Link } from "react-router-dom";
 
 Modal.setAppElement("#root");
 
@@ -33,7 +32,6 @@ const Laptops = ({ user }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [add, setAdd] = useState(false);
   const [search, setSearch] = useState("");
-
 
   useEffect(() => {
     db.collection("Laptops").onSnapshot((snapshot) => {
@@ -115,8 +113,6 @@ const Laptops = ({ user }) => {
     };
   };
 
-
-
   return (
     <motion.div
       className="laptops"
@@ -135,12 +131,12 @@ const Laptops = ({ user }) => {
               },
               content: {
                 backgroundColor: "#f4f4f4",
-                maxWidth: "450px",
-                maxHeight: "450px",
+                maxWidth: "550px",
+                height: "470px",
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
-                borderRadius:"5px"
+                borderRadius: "5px",
               },
             }}
           >
@@ -157,8 +153,7 @@ const Laptops = ({ user }) => {
       )}
       <div style={{ display: "flex", alignItems: "center" }}>
         <input
-        
-          type='text'
+          type="text"
           placeholder="Search..."
           style={{
             padding: "1rem",
@@ -183,7 +178,6 @@ const Laptops = ({ user }) => {
         )}
       </div>
       <div
-      
         style={{
           display: "flex",
           justifyContent: "center",
@@ -199,25 +193,22 @@ const Laptops = ({ user }) => {
               flexDirection: "column",
               alignItems: "flex-start",
               padding: "2rem",
-              width:"200px",
-              height:"400px",
-              border:".2px solid lightgray",
-              borderRadius:"5px",
-              margin:"1rem",
-              position:"relative"
+              width: "200px",
+              height: "400px",
+              border: ".2px solid lightgray",
+              borderRadius: "5px",
+              margin: "1rem",
+              position: "relative",
             }}
           >
-
-          
             <Link to={`/laptop/${laptop.id}`}>
-            <img src={laptop.image_def} width='100%' alt='laptops'/>
+              <img src={laptop.image_def} width="100%" alt="laptops" />
             </Link>
             <p>{laptop.title}</p>
             <p>Price: ${laptop.price}</p>
             <p>Rating: {laptop.rating}</p>
             <Link to={`/laptop/${laptop.id}`}>
-
-             <button className="addToCartBtn">Details</button>
+              <button className="addToCartBtn">Details</button>
             </Link>
             {admin && (
               <>
@@ -226,6 +217,9 @@ const Laptops = ({ user }) => {
                     display: "flex",
                     justifyContent: "space-between",
                     width: "100%",
+                    position: "absolute",
+                    top: "0",
+                    left: "0",
                   }}
                 >
                   <div

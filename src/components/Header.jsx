@@ -7,8 +7,13 @@ import { Drawer, Divider } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import CloseIcon from "@material-ui/icons/Close";
 import { Link as Scroll } from "react-scroll";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useSelector } from "react-redux";
 
 const Header = ({ user }) => {
+  const amount = useSelector((state) => state.product.amount);
+  const state = useSelector((state) => state.product.product);
+  console.log(state);
   const history = useHistory();
   const auth = app.auth();
   const logout = async () => {
@@ -149,12 +154,41 @@ const Header = ({ user }) => {
           </Link>
         </div>
 
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
           {user && (
             <div style={{ marginRight: "1rem" }}>
               Hello, {user?.displayName}
             </div>
           )}
+          <div style={{ position: "relative" }}>
+            <Link
+              to="/cart"
+              style={{ textDecoration: "none", color: "#f4f4f4" }}
+            >
+              <AiOutlineShoppingCart
+                size="30px"
+                style={{ marginRight: "3.5rem" }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  top: "-7px",
+                  left: "18px",
+                  borderRadius: "50%",
+                  backgroundColor: "orange",
+                  width: "1.5rem",
+                  height: "1.5rem",
+                  color: "black",
+                  fontWeight: "600",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                {amount}
+              </div>
+            </Link>
+          </div>
           <Link
             to="/login"
             style={{

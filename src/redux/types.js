@@ -1,2 +1,3 @@
-export const SET_PATH = "SET_PATH";
-export const GET_USER = "GET_USER";
+export const GET_PRODUCT = "GET_PRODUCT";
+export const ADD_PRODUCT = "ADD_PRODUCT";
+

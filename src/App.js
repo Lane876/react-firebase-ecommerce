@@ -13,6 +13,9 @@ import Laptops from "./components/Laptops";
 import Phones from "./components/Phones";
 import Pcs from "./components/Pcs";
 import LaptopDetails from "./components/LaptopDetails";
+import PhoneDetails from "./components/PhoneDetails";
+import PcDetails from "./components/PcDetails";
+import Cart from "./components/Cart";
 
 function App() {
   const location = useLocation();
@@ -45,6 +48,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/about" component={About} />
+          <Route path="/cart" component={Cart} />
           <Route
             path="/laptops"
             render={() => <Laptops user={user} />}
@@ -52,7 +56,14 @@ function App() {
           <Route
             path="/laptop/:id"
             component={LaptopDetails}
-            // render={() => <LaptopDetails user={user}/>}
+          />
+          <Route
+            path="/phone/:id"
+            component={PhoneDetails}
+          />
+          <Route
+            path="/pc/:id"
+            component={PcDetails}
           />
           <Route path="/phones" render={()=> <Phones user={user} />}/>
           <Route path="/pcs" render={()=> <Pcs user={user} />}/>

@@ -9,6 +9,7 @@ import { MdDeleteForever } from "react-icons/md";
 import { AiFillEdit } from "react-icons/ai";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import { Link } from "react-router-dom";
 
 Modal.setAppElement("#root");
 
@@ -18,8 +19,12 @@ const Phones = ({ user }) => {
   const initialState = {
     id: "add",
     option: "Phones",
-    image: "",
+    image_def: "",
+    image_1: "",
+    image_2: "",
+    image_3: "",
     desc: "",
+    title: "",
     price: "",
     rating: "",
   };
@@ -127,12 +132,12 @@ const Phones = ({ user }) => {
               },
               content: {
                 backgroundColor: "#f4f4f4",
-                maxWidth: "450px",
-                maxHeight: "450px",
+                maxWidth: "550px",
+                height: "470px",
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
-                borderRadius:"5px"
+                borderRadius: "5px",
               },
             }}
           >
@@ -189,19 +194,23 @@ const Phones = ({ user }) => {
               flexDirection: "column",
               alignItems: "flex-start",
               padding: "2rem",
-              width:"200px",
-              height:"400px",
-              border:".2px solid lightgray",
-              borderRadius:"5px",
-              margin:"1rem"
-
+              width: "200px",
+              height: "400px",
+              border: ".2px solid lightgray",
+              borderRadius: "5px",
+              margin: "1rem",
+              position: "relative",
             }}
           >
-            <img src={phone.image} width='100%' alt='phones'/>
-            <p style={{wordBreak:"break-word"}}>{phone.desc}</p>
+            <Link to={`/phone/${phone.id}`}>
+              <img src={phone.image_def} width="100%" alt="phones" />
+            </Link>
+            <p style={{ wordBreak: "break-word" }}>{phone.title}</p>
             <p>Price: ${phone.price}</p>
             <p>Rating: {phone.rating}</p>
-            {!admin && <button className="addToCartBtn">add to cart</button>}
+            <Link to={`/phone/${phone.id}`}>
+              <button className="addToCartBtn">Details</button>
+            </Link>
             {admin && (
               <>
                 <div
@@ -209,6 +218,9 @@ const Phones = ({ user }) => {
                     display: "flex",
                     justifyContent: "space-between",
                     width: "100%",
+                    position: "absolute",
+                    top: "0",
+                    left: "0",
                   }}
                 >
                   <div
