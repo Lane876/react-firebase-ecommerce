@@ -9,8 +9,7 @@ import "react-awesome-slider/dist/styles.css";
 import "react-awesome-slider/dist/custom-animations/cube-animation.css";
 
 import { useDispatch } from "react-redux";
-import AddProduct from "./AddProduct";
-import { addProduct, getProduct } from "../redux/cart/cartActions";
+import { getProduct } from "../redux/cart/cartActions";
 
 
 const LaptopDetails = (props) => {

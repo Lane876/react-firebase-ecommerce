@@ -7,8 +7,12 @@ import AwesomeSlider from "react-awesome-slider";
 import withAutoplay from "react-awesome-slider/dist/autoplay";
 import "react-awesome-slider/dist/styles.css";
 import "react-awesome-slider/dist/custom-animations/cube-animation.css";
+import { getProduct } from "../redux/cart/cartActions";
+import { useDispatch } from "react-redux";
 
 const PcDetails = (props) => {
+  const dispatch = useDispatch()
+
   const [pcs, setPcs] = useState([]);
   const id = props.match.params.id;
 
@@ -97,7 +101,7 @@ const PcDetails = (props) => {
           >
             ${pcs.price}
           </div>
-          <button>add to cart</button>
+          <button onClick={()=>dispatch(getProduct(pcs))}>add to cart</button>
         </div>
       </div>
       <Footer />

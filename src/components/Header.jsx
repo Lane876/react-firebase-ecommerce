@@ -11,7 +11,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useSelector } from "react-redux";
 
 const Header = ({ user }) => {
-  const amount = useSelector((state) => state.product.amount);
+ 
   const state = useSelector((state) => state.product.product);
   console.log(state);
   const history = useHistory();
@@ -169,7 +169,7 @@ const Header = ({ user }) => {
                 size="30px"
                 style={{ marginRight: "3.5rem" }}
               />
-              <div
+              {state.length !== 0 && <div
                 style={{
                   position: "absolute",
                   top: "-7px",
@@ -185,8 +185,8 @@ const Header = ({ user }) => {
                   alignItems: "center",
                 }}
               >
-                {amount}
-              </div>
+                {state.length}
+              </div>}
             </Link>
           </div>
           <Link

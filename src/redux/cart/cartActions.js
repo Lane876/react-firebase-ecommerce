@@ -1,4 +1,4 @@
-import { GET_PRODUCT, ADD_PRODUCT } from "../types"
+import { GET_PRODUCT, REMOVE_PRODUCT, CLEAR_CART } from "../types"
 
 
 export const getProduct = (product) => {
@@ -7,9 +7,15 @@ export const getProduct = (product) => {
         payload: product
     }
 }
-export const addProduct = (item) => {
+export const removeProduct = (item) => {
     return {
-        type: ADD_PRODUCT,
+        type: REMOVE_PRODUCT,
         payload: item
+    }
+}
+export const clearCart = () => {
+    return {
+        type: CLEAR_CART,
+        payload: ''
     }
 }

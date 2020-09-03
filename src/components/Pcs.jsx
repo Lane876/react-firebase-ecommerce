@@ -10,6 +10,7 @@ import { AiFillEdit } from "react-icons/ai";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 
 Modal.setAppElement("#root");
 
@@ -27,6 +28,8 @@ const Pcs = ({ user }) => {
     title: "",
     price: "",
     rating: "",
+    unique: uuidv4()
+
   };
 
   const [values, setValues] = useState(initialState);

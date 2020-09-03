@@ -1,5 +1,6 @@
 import React from "react";
 import { db } from "../config";
+import { v4 as uuidv4 } from 'uuid';
 
 const AddProduct = ({ values, setValues, initialState, setIsOpen, add, setAdd }) => {
   function handleInput(e) {
