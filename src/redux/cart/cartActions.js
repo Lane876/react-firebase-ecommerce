@@ -1,7 +1,10 @@
 import { GET_PRODUCT, REMOVE_PRODUCT, CLEAR_CART } from "../types"
 
 
+
 export const getProduct = (product) => {
+
+
     return {
         type: GET_PRODUCT,
         payload: product

@@ -88,7 +88,7 @@ const LaptopDetails = (props) => {
             display: "flex",
             justifyContent: "flex-start",
             flexDirection: "column",
-            minWidth: "40%",
+            width: "600px",
             height: "600px",
             margin: "2rem",
           }}

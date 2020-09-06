@@ -6,6 +6,7 @@ import { IoMdClose } from "react-icons/io";
 const Cart = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.product);
+  const quantity = useSelector((state) => state.product.quantity);
 
   const arr = products.length;
 

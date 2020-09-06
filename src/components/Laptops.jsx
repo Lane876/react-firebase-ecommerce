@@ -27,7 +27,8 @@ const Laptops = ({ user }) => {
     title: "",
     price: "",
     rating: "",
-    unique: uuidv4()
+    unique: uuidv4(),
+    qty: 1,
   };
   const [values, setValues] = useState(initialState);
   const [laptops, setLaptops] = useState([]);
