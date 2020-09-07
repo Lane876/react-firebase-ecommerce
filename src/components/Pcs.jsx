@@ -28,8 +28,8 @@ const Pcs = ({ user }) => {
     title: "",
     price: "",
     rating: "",
-    unique: uuidv4()
-
+    unique: uuidv4(),
+    quantity: 1,
   };
 
   const [values, setValues] = useState(initialState);

@@ -1,12 +1,14 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeProduct, clearCart } from "../redux/cart/cartActions";
+import { removeProduct, clearCart, dec, inc } from "../redux/cart/cartActions";
 import { IoMdClose } from "react-icons/io";
+import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.product);
-  const quantity = useSelector((state) => state.product.quantity);
+  console.log(products);
+  
 
   const arr = products.length;
 
@@ -71,6 +73,11 @@ const Cart = () => {
                 <div>{product.title}</div>
                 <div>${product.price}</div>
               </div>
+              </div>
+              <div style={{display:"flex", alignItems:"center"}}>
+                <AiOutlineLeft size="20px" onClick={()=>dispatch(dec(product))} style={{cursor:"pointer", paddingRight:"15px"}} />
+                {product.quantity}
+                <AiOutlineRight size="20px" onClick={()=>dispatch(inc(product))} style={{cursor:"pointer", paddingLeft:"15px"}}/>
               </div>
               <div
                 style={{ color: "tomato", cursor: "pointer", padding:"1rem" }}
