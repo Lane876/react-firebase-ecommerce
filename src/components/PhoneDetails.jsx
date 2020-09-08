@@ -49,7 +49,7 @@ const PhoneDetails = (props) => {
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
     >
-      <div
+     <div
         style={{
           paddingTop: "6rem",
           display: "flex",
@@ -71,7 +71,7 @@ const PhoneDetails = (props) => {
                 key={i}
                 data-src={img.image}
                 style={{
-                  width: "60%",
+                  width: "80%",
                   position: "absolute",
                   top: "50%",
                   left: "50%",
@@ -81,13 +81,13 @@ const PhoneDetails = (props) => {
             ))}
         </AutoplaySlider>
 
-        <slider />
+
         <div
           style={{
             display: "flex",
             justifyContent: "flex-start",
             flexDirection: "column",
-            minWidth: "40%",
+            width: "600px",
             height: "600px",
             margin: "2rem",
           }}
@@ -101,7 +101,10 @@ const PhoneDetails = (props) => {
           >
             ${phones.price}
           </div>
-          <button onClick={()=>dispatch(getProduct(phones))}>add to cart</button>
+          <div style={{display:"flex", justifyContent:"center"}}>
+          <button className='detailsBtn' onClick={()=>dispatch(getProduct(phones))} >ADD TO CART</button>
+
+          </div>
         </div>
       </div>
       <Footer />

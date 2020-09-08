@@ -13,7 +13,9 @@ import { useSelector } from "react-redux";
 const Header = ({ user }) => {
  
   const state = useSelector((state) => state.product.product);
-  console.log(state);
+  // const qty = useSelector((state) => state.product.quantity);
+  // console.log(qty);
+  
   const history = useHistory();
   const auth = app.auth();
   const logout = async () => {
@@ -186,6 +188,7 @@ const Header = ({ user }) => {
                 }}
               >
                 {state.length}
+                {/* {qty} */}
               </div>}
             </Link>
           </div>

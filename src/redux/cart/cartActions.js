@@ -1,4 +1,4 @@
-import { GET_PRODUCT, REMOVE_PRODUCT, CLEAR_CART, INC, DEC } from "../types"
+import { GET_PRODUCT, REMOVE_PRODUCT, CLEAR_CART, INC, DEC, GET_TOTAL } from "../types"
 
 
 
@@ -31,6 +31,12 @@ export const inc = (item) => {
 export const dec = (item) => {
     return {
         type: DEC,
+        payload: item
+    }
+}
+export const getTotal = (item) => {
+    return {
+        type: GET_TOTAL,
         payload: item
     }
 }

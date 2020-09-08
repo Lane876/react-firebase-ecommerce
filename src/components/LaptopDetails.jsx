@@ -102,7 +102,10 @@ const LaptopDetails = (props) => {
           >
             ${laptops.price}
           </div>
-          <button onClick={()=>dispatch(getProduct(laptops))} >add to cart</button>
+          <div style={{display:"flex", justifyContent:"center"}}>
+          <button className='detailsBtn' onClick={()=>dispatch(getProduct(laptops))} >ADD TO CART</button>
+
+          </div>
         </div>
       </div>
       <Footer />

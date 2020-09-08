@@ -49,7 +49,7 @@ const PcDetails = (props) => {
     animate={{ opacity: 1 }}
     initial={{ opacity: 0 }}
   >
-      <div
+     <div
         style={{
           paddingTop: "6rem",
           display: "flex",
@@ -81,13 +81,13 @@ const PcDetails = (props) => {
             ))}
         </AutoplaySlider>
 
-        <slider />
+
         <div
           style={{
             display: "flex",
             justifyContent: "flex-start",
             flexDirection: "column",
-            minWidth: "40%",
+            width: "600px",
             height: "600px",
             margin: "2rem",
           }}
@@ -101,7 +101,10 @@ const PcDetails = (props) => {
           >
             ${pcs.price}
           </div>
-          <button onClick={()=>dispatch(getProduct(pcs))}>add to cart</button>
+          <div style={{display:"flex", justifyContent:"center"}}>
+          <button className='detailsBtn' onClick={()=>dispatch(getProduct(pcs))} >ADD TO CART</button>
+
+          </div>
         </div>
       </div>
       <Footer />

@@ -1,14 +1,17 @@
 import React from "react";
+import { motion } from "framer-motion";
+
 import { useSelector, useDispatch } from "react-redux";
-import { removeProduct, clearCart, dec, inc } from "../redux/cart/cartActions";
+import { removeProduct, clearCart, dec, inc, getTotal } from "../redux/cart/cartActions";
 import { IoMdClose } from "react-icons/io";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import { useEffect } from "react";
+import { GET_TOTAL } from "../redux/types";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.product);
-  console.log(products);
-  
+  const total = useSelector((state) => state.product.total);
 
   const arr = products.length;
 
@@ -16,8 +19,15 @@ const Cart = () => {
     dispatch(clearCart());
   };
 
+  useEffect(()=>{
+    dispatch({type: GET_TOTAL})
+  },[products])
+
   return (
-    <div
+    <motion.div
+    exit={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
       style={{
         display: "flex",
         justifyContent: "center",
@@ -51,10 +61,9 @@ const Cart = () => {
           {products.map((product, i) => (
             <div
               key={i}
-              style={{ display: "flex", justifyContent: "space-between", width:"100%" }}
+              style={{ display: "flex", justifyContent: "space-between", width:"100%", flexWrap:"wrap" }}
             >
-                <div style={{display:"flex"}}>
-
+              <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
               <div>
                 <img
                   src={product.image_def}
@@ -71,27 +80,35 @@ const Cart = () => {
                 }}
                 >
                 <div>{product.title}</div>
-                <div>${product.price}</div>
               </div>
               </div>
+              <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", width:"300px", padding:"1rem"}}>
+
               <div style={{display:"flex", alignItems:"center"}}>
                 <AiOutlineLeft size="20px" onClick={()=>dispatch(dec(product))} style={{cursor:"pointer", paddingRight:"15px"}} />
                 {product.quantity}
                 <AiOutlineRight size="20px" onClick={()=>dispatch(inc(product))} style={{cursor:"pointer", paddingLeft:"15px"}}/>
               </div>
+              <div style={{display:"flex", alignItems:"center"}} >Price: ${product.price * product.quantity}</div>
               <div
-                style={{ color: "tomato", cursor: "pointer", padding:"1rem" }}
+                style={{ color: "tomato", cursor: "pointer", display:"flex", alignItems:"center" }}
                 onClick={() => dispatch(removeProduct(product))}
                 >
                 <IoMdClose size="30px" />
               </div>
+                </div>
             </div>
           ))}
           <div style={{ width: "100%", border: ".5px solid #ffac33", marginBottom:"2rem" }} />
-          <button onClick={handleClear}>Clear cart</button>
+          <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", width:"100%"}}>
+          <button onClick={handleClear} className='landingbtn'>CLEAR CART</button>
+          <h2>Total: ${total}</h2>
+
+          </div>
         </div>
+        
       )}
-    </div>
+    </motion.div>
   );
 };
 

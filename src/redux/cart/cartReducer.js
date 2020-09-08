@@ -1,30 +1,37 @@
-import { act } from "react-dom/test-utils";
-
 const {
   GET_PRODUCT,
   REMOVE_PRODUCT,
   CLEAR_CART,
   INC,
   DEC,
+  GET_TOTAL,
 } = require("../types");
 
 const initialState = {
   product: [],
+  total: 0,
 };
 
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_PRODUCT:
       const existingCartItem = state.product.find(
-        cartItem => cartItem.unique === action.payload.unique,
-        
-      )
+        (cartItem) => cartItem.unique === action.payload.unique
+      );
 
-      if(existingCartItem){
-        return {...state}
+      if (existingCartItem) {
+        let tempProd = state.product.map((cartItem) => {
+          if (cartItem.unique === action.payload.unique) {
+            cartItem = { ...cartItem, quantity: cartItem.quantity + 1 };
+          }
+          return cartItem;
+        });
+        return {
+          ...state,
+          product: tempProd,
+        };
       } else {
-        return {...state,
-            product: state.product.concat(action.payload)}
+        return { ...state, product: state.product.concat(action.payload) };
       }
     case REMOVE_PRODUCT:
       return {
@@ -67,6 +74,24 @@ const cartReducer = (state = initialState, action) => {
         ...state,
         product: tempProduct,
       };
+
+    case GET_TOTAL:
+      let { total, quantity } = state.product.reduce(
+        (cartTotal, cartItem) => {
+          const { price, quantity } = cartItem;
+          const itemTotal = price * quantity;
+
+          cartTotal.total += itemTotal;
+          cartTotal.quantity += quantity;
+          return cartTotal;
+        },
+        {
+          total: 0,
+          quantity: 0,
+        }
+      );
+      total = parseFloat(total.toFixed(2));
+      return { ...state, total, quantity };
 
     default:
       return state;

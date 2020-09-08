@@ -77,6 +77,36 @@ code {
   overflow-x: hidden;
 }
 
+.detailsBtn{
+  outline-color: none;
+  padding: 1rem;
+  cursor: pointer;
+  font-weight: 900;
+  border: 2px solid #fff;
+  outline-color: #fff;
+  width: 300px;
+  background-color: orange;
+  letter-spacing: 2px;
+  font-size: 1rem;
+  border-radius: 2rem; 
+  transition: all 0.6s ease-in-out;
+
+}
+
+
+.detailsBtn:hover {
+  background-color: #ffac33;
+  font-weight: 900;
+  font-size: 1rem;
+  width: 300px;
+  letter-spacing: 5px;
+  outline-color: #ffac33;
+  border: 2px solid #f4f4f4;
+  border-radius: 2rem;
+  
+
+}
+
 .landingbtn {
   outline-color: none;
   padding: 1rem;
