@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { AiOutlineSearch } from "react-icons/ai";
+import { AiOutlineSearch, AiOutlineShoppingCart } from "react-icons/ai";
 import AddProduct from "./AddProduct";
 import { db } from "../config";
 import Modal from "react-modal";
@@ -11,11 +11,14 @@ import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
+import { useDispatch } from "react-redux";
+import { getProduct } from "../redux/cart/cartActions";
 
 Modal.setAppElement("#root");
 
 const Pcs = ({ user }) => {
   const admin = user?.uid === "hwdNGlf4e4Qh8488jCJlxpOjEwl1";
+  const dispatch = useDispatch()
   const [pcs, setPcs] = useState([]);
   const initialState = {
     id: "add",
@@ -216,9 +219,10 @@ const Pcs = ({ user }) => {
             <p>{pc.title}</p>
             <p>Price: ${pc.price}</p>
             <p>Rating: {pc.rating}</p>
-            <Link to={`/pc/${pc.id}`}>
-              <button className="addToCartBtn">Details</button>
-            </Link>
+            <button className="addToCartBtn" style={{display:"flex", justifyContent:"space-around", alignItems:"center"}} >
+              <Link to={`/pc/${pc.id}`} style={{textDecoration:"none", color:"orange"}} >
+                <span>DETAILS</span> 
+                </Link> <AiOutlineShoppingCart size='25px' onClick={()=>dispatch(getProduct(pc))} /> </button>
             {admin && (
               <>
                 <div

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import logo from "../images/logo.png";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
 import app from "../config";
 import { Drawer, Divider } from "@material-ui/core";
@@ -17,6 +17,7 @@ const Header = ({ user }) => {
   // console.log(qty);
   
   const history = useHistory();
+  const location = useLocation()
   const auth = app.auth();
   const logout = async () => {
     await auth.signOut();
@@ -123,7 +124,7 @@ const Header = ({ user }) => {
             <p className="menu-link">Pc's</p>
           </Link>
           <Divider />
-          <Scroll
+          {location.pathname === '/' && <Scroll
             activeClass="active"
             to="footer"
             spy={true}
@@ -142,7 +143,8 @@ const Header = ({ user }) => {
             onClick={() => setOpen(false)}
           >
             <p className="menu-link">Contact</p>
-          </Scroll>
+          </Scroll>}
+          
         </div>
       </Drawer>
       {/* <div id="header"> */}

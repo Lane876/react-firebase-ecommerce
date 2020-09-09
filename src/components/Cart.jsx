@@ -7,6 +7,7 @@ import { IoMdClose } from "react-icons/io";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { useEffect } from "react";
 import { GET_TOTAL } from "../redux/types";
+import StripeButton from "./StripeButton";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -103,7 +104,7 @@ const Cart = () => {
           <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", width:"100%"}}>
           <button onClick={handleClear} className='landingbtn'>CLEAR CART</button>
           <h2>Total: ${total}</h2>
-
+          <StripeButton price={total} />
           </div>
         </div>
         

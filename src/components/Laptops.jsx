@@ -6,16 +6,20 @@ import { db } from "../config";
 import Modal from "react-modal";
 import { CgAddR } from "react-icons/cg";
 import { MdDeleteForever } from "react-icons/md";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import { AiFillEdit } from "react-icons/ai";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
+import { getProduct } from "../redux/cart/cartActions";
+import { useDispatch } from "react-redux";
 
 Modal.setAppElement("#root");
 
 const Laptops = ({ user }) => {
   const admin = user?.uid === "hwdNGlf4e4Qh8488jCJlxpOjEwl1";
+  const dispatch = useDispatch()
   const initialState = {
     id: "add",
     option: "Laptops",
@@ -195,6 +199,7 @@ const Laptops = ({ user }) => {
               display: "flex",
               flexDirection: "column",
               alignItems: "flex-start",
+              justifyContent:"space-around",
               padding: "2rem",
               width: "200px",
               height: "400px",
@@ -209,10 +214,12 @@ const Laptops = ({ user }) => {
             </Link>
             <p>{laptop.title}</p>
             <p>Price: ${laptop.price}</p>
-            <p>Rating: {laptop.rating}</p>
-            <Link to={`/laptop/${laptop.id}`}>
-              <button className="addToCartBtn">Details</button>
-            </Link>
+              <button className="addToCartBtn" style={{display:"flex", justifyContent:"space-around", alignItems:"center"}} >
+              <Link to={`/laptop/${laptop.id}`} style={{textDecoration:"none", color:"orange"}} >
+                <span>DETAILS</span> 
+                </Link> <AiOutlineShoppingCart size='25px' onClick={()=>dispatch(getProduct(laptop))} /> </button>
+            
+            
             {admin && (
               <>
                 <div
