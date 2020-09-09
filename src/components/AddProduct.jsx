@@ -24,7 +24,7 @@ const AddProduct = ({ values, setValues, initialState, setIsOpen, add, setAdd })
         image_2: values.image_2 || '',
         image_3: values.image_3 || '',
         desc: values.desc || '',
-        price: values.price || '',
+        price: Number(values.price) || '',
         rating: values.rating || '',
       });
     } else {

@@ -11,15 +11,19 @@ import { AiFillEdit } from "react-icons/ai";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { Link } from "react-router-dom";
-import { v4 as uuidv4 } from 'uuid';
-import { getProduct } from "../redux/cart/cartActions";
-import { useDispatch } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
+import {
+  getProduct,
+  sortResutlsDes,
+  sortResutlsAsc,
+} from "../redux/cart/cartActions";
+import { useDispatch, useSelector } from "react-redux";
 
 Modal.setAppElement("#root");
 
 const Laptops = ({ user }) => {
   const admin = user?.uid === "hwdNGlf4e4Qh8488jCJlxpOjEwl1";
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const initialState = {
     id: "add",
     option: "Laptops",
@@ -29,7 +33,7 @@ const Laptops = ({ user }) => {
     image_3: "",
     desc: "",
     title: "",
-    price: "",
+    price: '',
     rating: "",
     unique: uuidv4(),
     quantity: 1,
@@ -120,6 +124,52 @@ const Laptops = ({ user }) => {
     };
   };
 
+  const handleSelect = (e) => {
+    let select = e.target.value;
+
+    if (select === "Asc") {
+      db.collection("Laptops")
+        .orderBy('price')
+        .get()
+        .then((snapshot) => {
+          setLaptops(
+            snapshot.docs.map((doc) => (doc.data()))
+          );
+          console.log(laptops);
+        });
+    }
+    if (select === "Des") {
+      db.collection("Laptops")
+        .orderBy("price", "desc")
+        .get()
+        .then((snapshot) => {
+          setLaptops(
+            snapshot.docs.map((doc) => (doc.data()))
+          );
+        });
+    }
+    if (select === "AZ") {
+      db.collection("Laptops")
+        .orderBy("title", "asc")
+        .get()
+        .then((snapshot) => {
+          setLaptops(
+            snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+          );
+        });
+    }
+    if (select === "ZA") {
+      db.collection("Laptops")
+        .orderBy("title", "desc")
+        .get()
+        .then((snapshot) => {
+          setLaptops(
+            snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+          );
+        });
+    }
+  };
+
   return (
     <motion.div
       className="laptops"
@@ -158,23 +208,51 @@ const Laptops = ({ user }) => {
           </Modal>
         </>
       )}
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <input
-          type="text"
-          placeholder="Search..."
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          width: "80%",
+          margin: "0 auto",
+          paddingBottom: "2rem",
+          justifyContent: "space-evenly",
+          flexWrap: "wrap",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", padding: "1rem" }}>
+          <input
+            type="text"
+            placeholder="Search..."
+            style={{
+              padding: "1rem",
+              width: "400px",
+              border: "1px solid orange",
+              borderRadius: "8px",
+              outlineColor: "orange",
+            }}
+            onChange={handleSearch}
+          />
+          <AiOutlineSearch
+            size="30px"
+            style={{ marginLeft: "-40px", color: "orange" }}
+          />
+        </div>
+        <select
           style={{
             padding: "1rem",
-            width: "400px",
+            width: "300px",
             border: "1px solid orange",
             borderRadius: "8px",
             outlineColor: "orange",
+            padding: "1rem",
           }}
-          onChange={handleSearch}
-        />
-        <AiOutlineSearch
-          size="30px"
-          style={{ marginLeft: "-40px", color: "orange" }}
-        />
+          onChange={handleSelect}
+        >
+          <option value="Asc">Sort by price: Ascending</option>
+          <option value="Des">Sort by price: Decending</option>
+          <option value="AZ">Sort by name: A-Z</option>
+          <option value="ZA">Sort by name: Z-A</option>
+        </select>
         {admin && (
           <div
             style={{ cursor: "pointer", marginLeft: "3rem" }}
@@ -199,7 +277,7 @@ const Laptops = ({ user }) => {
               display: "flex",
               flexDirection: "column",
               alignItems: "flex-start",
-              justifyContent:"space-around",
+              justifyContent: "space-around",
               padding: "2rem",
               width: "200px",
               height: "400px",
@@ -214,12 +292,26 @@ const Laptops = ({ user }) => {
             </Link>
             <p>{laptop.title}</p>
             <p>Price: ${laptop.price}</p>
-              <button className="addToCartBtn" style={{display:"flex", justifyContent:"space-around", alignItems:"center"}} >
-              <Link to={`/laptop/${laptop.id}`} style={{textDecoration:"none", color:"orange"}} >
-                <span>DETAILS</span> 
-                </Link> <AiOutlineShoppingCart size='25px' onClick={()=>dispatch(getProduct(laptop))} /> </button>
-            
-            
+            <button
+              className="addToCartBtn"
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+                alignItems: "center",
+              }}
+            >
+              <Link
+                to={`/laptop/${laptop.id}`}
+                style={{ textDecoration: "none", color: "orange" }}
+              >
+                <span>DETAILS</span>
+              </Link>{" "}
+              <AiOutlineShoppingCart
+                size="25px"
+                onClick={() => dispatch(getProduct(laptop))}
+              />{" "}
+            </button>
+
             {admin && (
               <>
                 <div

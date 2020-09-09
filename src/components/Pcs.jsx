@@ -10,7 +10,7 @@ import { AiFillEdit } from "react-icons/ai";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { Link } from "react-router-dom";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
 import { getProduct } from "../redux/cart/cartActions";
 
@@ -18,7 +18,7 @@ Modal.setAppElement("#root");
 
 const Pcs = ({ user }) => {
   const admin = user?.uid === "hwdNGlf4e4Qh8488jCJlxpOjEwl1";
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [pcs, setPcs] = useState([]);
   const initialState = {
     id: "add",
@@ -120,6 +120,52 @@ const Pcs = ({ user }) => {
     };
   };
 
+  const handleSelect = (e) => {
+    let select = e.target.value;
+
+    if (select === "Asc") {
+      db.collection("Pcs")
+        .orderBy('price')
+        .get()
+        .then((snapshot) => {
+          setPcs(
+            snapshot.docs.map((doc) => (doc.data()))
+          );
+          console.log(Pcs);
+        });
+    }
+    if (select === "Des") {
+      db.collection("Pcs")
+        .orderBy("price", "desc")
+        .get()
+        .then((snapshot) => {
+          setPcs(
+            snapshot.docs.map((doc) => (doc.data()))
+          );
+        });
+    }
+    if (select === "AZ") {
+      db.collection("Pcs")
+        .orderBy("title", "asc")
+        .get()
+        .then((snapshot) => {
+          setPcs(
+            snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+          );
+        });
+    }
+    if (select === "ZA") {
+      db.collection("Pcs")
+        .orderBy("title", "desc")
+        .get()
+        .then((snapshot) => {
+          setPcs(
+            snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+          );
+        });
+    }
+  };
+
   return (
     <motion.div
       className="pcs"
@@ -158,23 +204,52 @@ const Pcs = ({ user }) => {
           </Modal>
         </>
       )}
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <input
-          type="text"
-          onChange={handleSearch}
-          placeholder="Search..."
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          width: "80%",
+          margin: "0 auto",
+          paddingBottom: "2rem",
+          justifyContent: "space-evenly",
+          flexWrap: "wrap",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", padding: "1rem" }}>
+          <input
+            type="text"
+            placeholder="Search..."
+            style={{
+              padding: "1rem",
+              width: "400px",
+              border: "1px solid orange",
+              borderRadius: "8px",
+              outlineColor: "orange",
+            }}
+            onChange={handleSearch}
+          />
+          <AiOutlineSearch
+            size="30px"
+            style={{ marginLeft: "-40px", color: "orange" }}
+          />
+        </div>
+        <select
           style={{
             padding: "1rem",
-            width: "400px",
+            width: "300px",
             border: "1px solid orange",
             borderRadius: "8px",
             outlineColor: "orange",
+            padding: "1rem",
           }}
-        />
-        <AiOutlineSearch
-          size="30px"
-          style={{ marginLeft: "-40px", color: "orange", cursor: "pointer" }}
-        />
+          onChange={handleSelect}
+        >
+          <option value="Asc">Sort by price: Ascending</option>
+          <option value="Des">Sort by price: Decending</option>
+          <option value="AZ">Sort by name: A-Z</option>
+          <option value="ZA">Sort by name: Z-A</option>
+        </select>
+        
         {admin && (
           <div
             style={{ cursor: "pointer", marginLeft: "3rem" }}
@@ -219,10 +294,25 @@ const Pcs = ({ user }) => {
             <p>{pc.title}</p>
             <p>Price: ${pc.price}</p>
             <p>Rating: {pc.rating}</p>
-            <button className="addToCartBtn" style={{display:"flex", justifyContent:"space-around", alignItems:"center"}} >
-              <Link to={`/pc/${pc.id}`} style={{textDecoration:"none", color:"orange"}} >
-                <span>DETAILS</span> 
-                </Link> <AiOutlineShoppingCart size='25px' onClick={()=>dispatch(getProduct(pc))} /> </button>
+            <button
+              className="addToCartBtn"
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+                alignItems: "center",
+              }}
+            >
+              <Link
+                to={`/pc/${pc.id}`}
+                style={{ textDecoration: "none", color: "orange" }}
+              >
+                <span>DETAILS</span>
+              </Link>{" "}
+              <AiOutlineShoppingCart
+                size="25px"
+                onClick={() => dispatch(getProduct(pc))}
+              />{" "}
+            </button>
             {admin && (
               <>
                 <div

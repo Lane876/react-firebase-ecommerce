@@ -10,16 +10,15 @@ import { AiFillEdit } from "react-icons/ai";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { Link } from "react-router-dom";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
 import { getProduct } from "../redux/cart/cartActions";
-
 
 Modal.setAppElement("#root");
 
 const Phones = ({ user }) => {
   const admin = user?.uid === "hwdNGlf4e4Qh8488jCJlxpOjEwl1";
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [phones, setPhones] = useState([]);
   const initialState = {
     id: "add",
@@ -121,6 +120,52 @@ const Phones = ({ user }) => {
     };
   };
 
+  const handleSelect = (e) => {
+    let select = e.target.value;
+
+    if (select === "Asc") {
+      db.collection("Phones")
+        .orderBy('price')
+        .get()
+        .then((snapshot) => {
+          setPhones(
+            snapshot.docs.map((doc) => (doc.data()))
+          );
+          console.log(Phones);
+        });
+    }
+    if (select === "Des") {
+      db.collection("Phones")
+        .orderBy("price", "desc")
+        .get()
+        .then((snapshot) => {
+          setPhones(
+            snapshot.docs.map((doc) => (doc.data()))
+          );
+        });
+    }
+    if (select === "AZ") {
+      db.collection("Phones")
+        .orderBy("title", "asc")
+        .get()
+        .then((snapshot) => {
+          setPhones(
+            snapshot.docs.map((doc) => (doc.data()))
+          );
+        });
+    }
+    if (select === "ZA") {
+      db.collection("Phones")
+        .orderBy("title", "desc")
+        .get()
+        .then((snapshot) => {
+          setPhones(
+            snapshot.docs.map((doc) => (doc.data()))
+          );
+        });
+    }
+  };
+
   return (
     <motion.div
       className="phones"
@@ -159,23 +204,51 @@ const Phones = ({ user }) => {
           </Modal>
         </>
       )}
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <input
-          type="text"
-          onChange={handleSearch}
-          placeholder="Search..."
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          width: "80%",
+          margin: "0 auto",
+          paddingBottom: "2rem",
+          justifyContent: "space-evenly",
+          flexWrap: "wrap",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", padding: "1rem" }}>
+          <input
+            type="text"
+            placeholder="Search..."
+            style={{
+              padding: "1rem",
+              width: "400px",
+              border: "1px solid orange",
+              borderRadius: "8px",
+              outlineColor: "orange",
+            }}
+            onChange={handleSearch}
+          />
+          <AiOutlineSearch
+            size="30px"
+            style={{ marginLeft: "-40px", color: "orange" }}
+          />
+        </div>
+        <select
           style={{
             padding: "1rem",
-            width: "400px",
+            width: "300px",
             border: "1px solid orange",
             borderRadius: "8px",
             outlineColor: "orange",
+            padding: "1rem",
           }}
-        />
-        <AiOutlineSearch
-          size="30px"
-          style={{ marginLeft: "-40px", color: "orange", cursor: "pointer" }}
-        />
+          onChange={handleSelect}
+        >
+          <option value="Asc">Sort by price: Ascending</option>
+          <option value="Des">Sort by price: Decending</option>
+          <option value="AZ">Sort by name: A-Z</option>
+          <option value="ZA">Sort by name: Z-A</option>
+        </select>
         {admin && (
           <div
             style={{ cursor: "pointer", marginLeft: "3rem" }}
@@ -214,11 +287,26 @@ const Phones = ({ user }) => {
             </Link>
             <p style={{ wordBreak: "break-word" }}>{phone.title}</p>
             <p>Price: ${phone.price}</p>
-            
-            <button className="addToCartBtn" style={{display:"flex", justifyContent:"space-around", alignItems:"center"}} >
-              <Link to={`/phone/${phone.id}`} style={{textDecoration:"none", color:"orange"}} >
-                <span>DETAILS</span> 
-                </Link> <AiOutlineShoppingCart size='25px' onClick={()=>dispatch(getProduct(phone))} /> </button>
+
+            <button
+              className="addToCartBtn"
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+                alignItems: "center",
+              }}
+            >
+              <Link
+                to={`/phone/${phone.id}`}
+                style={{ textDecoration: "none", color: "orange" }}
+              >
+                <span>DETAILS</span>
+              </Link>{" "}
+              <AiOutlineShoppingCart
+                size="25px"
+                onClick={() => dispatch(getProduct(phone))}
+              />{" "}
+            </button>
             {admin && (
               <>
                 <div
