@@ -293,7 +293,6 @@ const Pcs = ({ user }) => {
             </Link>
             <p>{pc.title}</p>
             <p>Price: ${pc.price}</p>
-            <p>Rating: {pc.rating}</p>
             <button
               className="addToCartBtn"
               style={{

@@ -71,7 +71,7 @@ const PcDetails = (props) => {
                 key={i}
                 data-src={img.image}
                 style={{
-                  width: "80%",
+                  width: "50%",
                   position: "absolute",
                   top: "50%",
                   left: "50%",

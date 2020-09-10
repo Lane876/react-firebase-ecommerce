@@ -72,7 +72,7 @@ const LaptopDetails = (props) => {
                 key={i}
                 data-src={img.image}
                 style={{
-                  width: "80%",
+                  width: "600px",
                   position: "absolute",
                   top: "50%",
                   left: "50%",

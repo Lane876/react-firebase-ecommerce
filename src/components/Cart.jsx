@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
 import { removeProduct, clearCart, dec, inc, getTotal } from "../redux/cart/cartActions";
 import { IoMdClose } from "react-icons/io";
+import { FaRegSadCry } from "react-icons/fa";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { useEffect } from "react";
 import { GET_TOTAL } from "../redux/types";
@@ -42,9 +43,13 @@ const Cart = () => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
+            display:"flex",
+            flexDirection:"column",
+            justifyContent:"center",
+            alignItems:"center"
           }}
         >
-          Your Cart is Empty
+          <span> Your Cart is Empty </span> <FaRegSadCry size='40px' style={{padding:"1rem", color:"orange"}}/>
         </h2>
       ) : (
         <div

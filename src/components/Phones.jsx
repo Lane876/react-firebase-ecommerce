@@ -283,6 +283,7 @@ const Phones = ({ user }) => {
             }}
           >
             <Link to={`/phone/${phone.id}`}>
+
               <img src={phone.image_def} width="100%" alt="phones" />
             </Link>
             <p style={{ wordBreak: "break-word" }}>{phone.title}</p>
