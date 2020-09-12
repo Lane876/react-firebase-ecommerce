@@ -112,7 +112,7 @@ const LaptopDetails = (props) => {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </motion.div>
   );
 };

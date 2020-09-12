@@ -111,7 +111,7 @@ const PhoneDetails = (props) => {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </motion.div>
   );
 };

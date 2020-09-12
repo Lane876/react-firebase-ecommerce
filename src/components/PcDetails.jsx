@@ -112,7 +112,7 @@ const PcDetails = (props) => {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </motion.div>
   );
 };
