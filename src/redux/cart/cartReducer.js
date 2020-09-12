@@ -6,11 +6,13 @@ const {
   DEC,
   GET_TOTAL,
   SORT,
+  OPTION,
 } = require("../types");
 
 const initialState = {
   product: [],
   total: 0,
+  option: [],
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -94,8 +96,11 @@ const cartReducer = (state = initialState, action) => {
       total = parseFloat(total.toFixed(2));
       return { ...state, total, quantity };
 
-      case SORT:
-            return {...state, product: action.payload}
+    case SORT:
+      return { ...state, product: action.payload };
+
+    case OPTION:
+      return { ...state, option: action.payload };
 
     default:
       return state;

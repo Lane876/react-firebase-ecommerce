@@ -4,10 +4,10 @@ import { AnimatePresence } from "framer-motion";
 import { Route, Switch, useLocation } from "react-router-dom";
 import Home from "./components/Home";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import app, { db } from "./config";
+import app from "./config";
 import About from "./components/About";
 import Laptops from "./components/Laptops";
 import Phones from "./components/Phones";
@@ -35,8 +35,6 @@ function App() {
     };
   }, [auth]);
 
-  
-
   return (
     <div className="container">
       {location.pathname !== "/login" && location.pathname !== "/register" && (
@@ -49,24 +47,12 @@ function App() {
           <Route path="/register" component={Register} />
           <Route path="/about" component={About} />
           <Route path="/cart" component={Cart} />
-          <Route
-            path="/laptops"
-            render={() => <Laptops user={user} />}
-          />
-          <Route
-            path="/laptop/:id"
-            component={LaptopDetails}
-          />
-          <Route
-            path="/phone/:id"
-            component={PhoneDetails}
-          />
-          <Route
-            path="/pc/:id"
-            component={PcDetails}
-          />
-          <Route path="/phones" render={()=> <Phones user={user} />}/>
-          <Route path="/pcs" render={()=> <Pcs user={user} />}/>
+          <Route path="/laptops" render={() => <Laptops user={user} />} />
+          <Route path="/laptop/:id" component={LaptopDetails} />
+          <Route path="/phone/:id" component={PhoneDetails} />
+          <Route path="/pc/:id" component={PcDetails} />
+          <Route path="/phones" render={() => <Phones user={user} />} />
+          <Route path="/pcs" render={() => <Pcs user={user} />} />
         </Switch>
       </AnimatePresence>
       {/* {location.pathname !== "/login" &&

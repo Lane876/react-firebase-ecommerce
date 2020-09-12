@@ -4,5 +4,4 @@ export const CLEAR_CART = "CLEAR_CART";
 export const INC = "INC";
 export const DEC = "DEC";
 export const GET_TOTAL = "GET_TOTAL";
-export const SORT = "SORT";
-
+export const OPTION = "OPTION";

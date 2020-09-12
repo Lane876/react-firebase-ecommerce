@@ -12,11 +12,7 @@ import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import {
-  getProduct,
-  sortResutlsDes,
-  sortResutlsAsc,
-} from "../redux/cart/cartActions";
+import { getProduct, option } from "../redux/cart/cartActions";
 import { useDispatch, useSelector } from "react-redux";
 
 Modal.setAppElement("#root");
@@ -25,7 +21,7 @@ const Laptops = ({ user }) => {
   const admin = user?.uid === "hwdNGlf4e4Qh8488jCJlxpOjEwl1";
   const dispatch = useDispatch();
   const initialState = {
-    id: "add",
+    id: "",
     option: "Laptops",
     image_def: "",
     image_1: "",
@@ -33,7 +29,7 @@ const Laptops = ({ user }) => {
     image_3: "",
     desc: "",
     title: "",
-    price: '',
+    price: "",
     rating: "",
     unique: uuidv4(),
     quantity: 1,
@@ -129,11 +125,11 @@ const Laptops = ({ user }) => {
 
     if (select === "Asc") {
       db.collection("Laptops")
-        .orderBy('price')
+        .orderBy("price")
         .get()
         .then((snapshot) => {
           setLaptops(
-            snapshot.docs.map((doc) => (doc.data()))
+            snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
           );
           console.log(laptops);
         });
@@ -144,7 +140,7 @@ const Laptops = ({ user }) => {
         .get()
         .then((snapshot) => {
           setLaptops(
-            snapshot.docs.map((doc) => (doc.data()))
+            snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
           );
         });
     }
@@ -287,7 +283,10 @@ const Laptops = ({ user }) => {
               position: "relative",
             }}
           >
-            <Link to={`/laptop/${laptop.id}`}>
+            <Link
+              to={`/laptop/${laptop.id}`}
+              onClick={() => dispatch(option(laptop))}
+            >
               <img src={laptop.image_def} width="100%" alt="laptops" />
             </Link>
             <p>{laptop.title}</p>
@@ -299,16 +298,18 @@ const Laptops = ({ user }) => {
                 justifyContent: "space-around",
                 alignItems: "center",
               }}
+              onClick={() => dispatch(option(laptop))}
             >
               <Link
                 to={`/laptop/${laptop.id}`}
                 style={{ textDecoration: "none", color: "orange" }}
+                onClick={() => dispatch(option(laptop))}
               >
                 <span>DETAILS</span>
               </Link>{" "}
               <AiOutlineShoppingCart
                 size="25px"
-                onClick={() => dispatch(getProduct(laptop))}
+                onClick={() => dispatch(getProduct(laptop), option(laptop))}
               />{" "}
             </button>
 

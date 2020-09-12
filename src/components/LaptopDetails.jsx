@@ -9,11 +9,10 @@ import "react-awesome-slider/dist/styles.css";
 import "react-awesome-slider/dist/custom-animations/cube-animation.css";
 
 import { useDispatch } from "react-redux";
-import { getProduct } from "../redux/cart/cartActions";
-
+import { getProduct, option } from "../redux/cart/cartActions";
 
 const LaptopDetails = (props) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [laptops, setLaptops] = useState([]);
   const id = props.match.params.id;
 
@@ -45,7 +44,6 @@ const LaptopDetails = (props) => {
 
   return (
     <motion.div
-      
       exit={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
@@ -82,7 +80,6 @@ const LaptopDetails = (props) => {
             ))}
         </AutoplaySlider>
 
-
         <div
           style={{
             display: "flex",
@@ -102,9 +99,16 @@ const LaptopDetails = (props) => {
           >
             ${laptops.price}
           </div>
-          <div style={{display:"flex", justifyContent:"center"}}>
-          <button className='detailsBtn' onClick={()=>dispatch(getProduct(laptops))} >ADD TO CART</button>
-
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <button
+              className="detailsBtn"
+              onClick={() => {
+                laptops.id = id;
+                dispatch(getProduct(laptops));
+              }}
+            >
+              ADD TO CART
+            </button>
           </div>
         </div>
       </div>

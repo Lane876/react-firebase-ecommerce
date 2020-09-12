@@ -12,7 +12,7 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
-import { getProduct } from "../redux/cart/cartActions";
+import { getProduct, option } from "../redux/cart/cartActions";
 
 Modal.setAppElement("#root");
 
@@ -125,13 +125,10 @@ const Pcs = ({ user }) => {
 
     if (select === "Asc") {
       db.collection("Pcs")
-        .orderBy('price')
+        .orderBy("price")
         .get()
         .then((snapshot) => {
-          setPcs(
-            snapshot.docs.map((doc) => (doc.data()))
-          );
-          console.log(Pcs);
+          setPcs(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         });
     }
     if (select === "Des") {
@@ -139,9 +136,7 @@ const Pcs = ({ user }) => {
         .orderBy("price", "desc")
         .get()
         .then((snapshot) => {
-          setPcs(
-            snapshot.docs.map((doc) => (doc.data()))
-          );
+          setPcs(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         });
     }
     if (select === "AZ") {
@@ -149,9 +144,7 @@ const Pcs = ({ user }) => {
         .orderBy("title", "asc")
         .get()
         .then((snapshot) => {
-          setPcs(
-            snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-          );
+          setPcs(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         });
     }
     if (select === "ZA") {
@@ -159,9 +152,7 @@ const Pcs = ({ user }) => {
         .orderBy("title", "desc")
         .get()
         .then((snapshot) => {
-          setPcs(
-            snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-          );
+          setPcs(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
         });
     }
   };
@@ -235,7 +226,6 @@ const Pcs = ({ user }) => {
         </div>
         <select
           style={{
-            padding: "1rem",
             width: "300px",
             border: "1px solid orange",
             borderRadius: "8px",
@@ -249,7 +239,7 @@ const Pcs = ({ user }) => {
           <option value="AZ">Sort by name: A-Z</option>
           <option value="ZA">Sort by name: Z-A</option>
         </select>
-        
+
         {admin && (
           <div
             style={{ cursor: "pointer", marginLeft: "3rem" }}
@@ -283,7 +273,7 @@ const Pcs = ({ user }) => {
               position: "relative",
             }}
           >
-            <Link to={`/pc/${pc.id}`}>
+            <Link to={`/pc/${pc.id}`} onClick={() => dispatch(option(pc))}>
               <img
                 src={pc.image_def}
                 width="100%"
@@ -300,16 +290,18 @@ const Pcs = ({ user }) => {
                 justifyContent: "space-around",
                 alignItems: "center",
               }}
+              onClick={() => dispatch(option(pc))}
             >
               <Link
                 to={`/pc/${pc.id}`}
                 style={{ textDecoration: "none", color: "orange" }}
+                onClick={() => dispatch(option(pc))}
               >
                 <span>DETAILS</span>
               </Link>{" "}
               <AiOutlineShoppingCart
                 size="25px"
-                onClick={() => dispatch(getProduct(pc))}
+                onClick={() => dispatch(getProduct(pc), option(pc))}
               />{" "}
             </button>
             {admin && (

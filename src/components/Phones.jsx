@@ -12,7 +12,7 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
-import { getProduct } from "../redux/cart/cartActions";
+import { getProduct, option } from "../redux/cart/cartActions";
 
 Modal.setAppElement("#root");
 
@@ -125,11 +125,11 @@ const Phones = ({ user }) => {
 
     if (select === "Asc") {
       db.collection("Phones")
-        .orderBy('price')
+        .orderBy("price")
         .get()
         .then((snapshot) => {
           setPhones(
-            snapshot.docs.map((doc) => (doc.data()))
+            snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
           );
           console.log(Phones);
         });
@@ -140,7 +140,7 @@ const Phones = ({ user }) => {
         .get()
         .then((snapshot) => {
           setPhones(
-            snapshot.docs.map((doc) => (doc.data()))
+            snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
           );
         });
     }
@@ -150,7 +150,7 @@ const Phones = ({ user }) => {
         .get()
         .then((snapshot) => {
           setPhones(
-            snapshot.docs.map((doc) => (doc.data()))
+            snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
           );
         });
     }
@@ -160,7 +160,7 @@ const Phones = ({ user }) => {
         .get()
         .then((snapshot) => {
           setPhones(
-            snapshot.docs.map((doc) => (doc.data()))
+            snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
           );
         });
     }
@@ -235,7 +235,6 @@ const Phones = ({ user }) => {
         </div>
         <select
           style={{
-            padding: "1rem",
             width: "300px",
             border: "1px solid orange",
             borderRadius: "8px",
@@ -282,8 +281,10 @@ const Phones = ({ user }) => {
               position: "relative",
             }}
           >
-            <Link to={`/phone/${phone.id}`}>
-
+            <Link
+              to={`/phone/${phone.id}`}
+              onClick={() => dispatch(option(phone))}
+            >
               <img src={phone.image_def} width="100%" alt="phones" />
             </Link>
             <p style={{ wordBreak: "break-word" }}>{phone.title}</p>
@@ -296,16 +297,20 @@ const Phones = ({ user }) => {
                 justifyContent: "space-around",
                 alignItems: "center",
               }}
+              onClick={() => dispatch(option(phone))}
             >
               <Link
                 to={`/phone/${phone.id}`}
                 style={{ textDecoration: "none", color: "orange" }}
+                onClick={() => dispatch(option(phone))}
               >
                 <span>DETAILS</span>
               </Link>{" "}
               <AiOutlineShoppingCart
                 size="25px"
-                onClick={() => dispatch(getProduct(phone))}
+                onClick={() =>
+                  dispatch(getProduct(phone, phone.id), option(phone))
+                }
               />{" "}
             </button>
             {admin && (

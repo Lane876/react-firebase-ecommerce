@@ -1,8 +1,14 @@
 import React from "react";
 import { db } from "../config";
-import { v4 as uuidv4 } from 'uuid';
 
-const AddProduct = ({ values, setValues, initialState, setIsOpen, add, setAdd }) => {
+const AddProduct = ({
+  values,
+  setValues,
+  initialState,
+  setIsOpen,
+  add,
+  setAdd,
+}) => {
   function handleInput(e) {
     let { name, value } = e.target;
     setValues({
@@ -18,32 +24,35 @@ const AddProduct = ({ values, setValues, initialState, setIsOpen, add, setAdd })
         ...values,
         id: values.id || "",
         title: values.title || "",
-        option: values.option || '',
-        image_def: values.image_def || '',
-        image_1: values.image_1 || '',
-        image_2: values.image_2 || '',
-        image_3: values.image_3 || '',
-        desc: values.desc || '',
-        price: Number(values.price) || '',
-        rating: values.rating || '',
+        option: values.option || "",
+        image_def: values.image_def || "",
+        image_1: values.image_1 || "",
+        image_2: values.image_2 || "",
+        image_3: values.image_3 || "",
+        desc: values.desc || "",
+        price: Number(values.price) || "",
+        rating: values.rating || "",
       });
     } else {
-      await db.collection(`${values.option}`).doc(values.id).set({
-        option: values.option || '',
-        title: values.title || '',
-        image_def: values.image_def || '',
-        image_1: values.image_1 || '',
-        image_2: values.image_2 || '',
-        image_3: values.image_3 || '',
-        desc: values.desc || '',
-        price: values.price || '',
-        rating: values.rating || '',
-      });
+      await db
+        .collection(`${values.option}`)
+        .doc(values.id)
+        .set({
+          option: values.option || "",
+          title: values.title || "",
+          image_def: values.image_def || "",
+          image_1: values.image_1 || "",
+          image_2: values.image_2 || "",
+          image_3: values.image_3 || "",
+          desc: values.desc || "",
+          price: values.price || "",
+          rating: values.rating || "",
+        });
     }
 
     setValues(initialState);
-    setIsOpen(false)
-    setAdd(false)
+    setIsOpen(false);
+    setAdd(false);
   };
 
   return (
@@ -54,7 +63,12 @@ const AddProduct = ({ values, setValues, initialState, setIsOpen, add, setAdd })
         flexDirection: "column",
       }}
     >
-      <select onChange={handleInput} value={values.option} name="option" className='inputFields'>
+      <select
+        onChange={handleInput}
+        value={values.option}
+        name="option"
+        className="inputFields"
+      >
         <option>Laptops</option>
         <option>Phones</option>
         <option>Pcs</option>
@@ -65,7 +79,7 @@ const AddProduct = ({ values, setValues, initialState, setIsOpen, add, setAdd })
         name="image_def"
         placeholder="default image link"
         onChange={handleInput}
-        className='inputFields'
+        className="inputFields"
       />
       <input
         type="text"
@@ -73,7 +87,7 @@ const AddProduct = ({ values, setValues, initialState, setIsOpen, add, setAdd })
         name="image_1"
         placeholder="image 1 link"
         onChange={handleInput}
-        className='inputFields'
+        className="inputFields"
       />
       <input
         type="text"
@@ -81,7 +95,7 @@ const AddProduct = ({ values, setValues, initialState, setIsOpen, add, setAdd })
         name="image_2"
         placeholder="image 2 link"
         onChange={handleInput}
-        className='inputFields'
+        className="inputFields"
       />
       <input
         type="text"
@@ -89,7 +103,7 @@ const AddProduct = ({ values, setValues, initialState, setIsOpen, add, setAdd })
         name="image_3"
         placeholder="image 3 link"
         onChange={handleInput}
-        className='inputFields'
+        className="inputFields"
       />
       <input
         type="text"
@@ -97,16 +111,16 @@ const AddProduct = ({ values, setValues, initialState, setIsOpen, add, setAdd })
         value={values.title}
         placeholder="title"
         onChange={handleInput}
-        className='inputFields'
+        className="inputFields"
       />
       <textarea
-        style={{height:"60px", fontFamily:"inherit"}}
+        style={{ height: "60px", fontFamily: "inherit" }}
         type="text"
         name="desc"
         value={values.desc}
         placeholder="description"
         onChange={handleInput}
-        className='inputFields'
+        className="inputFields"
       />
       <input
         type="number"
@@ -114,7 +128,7 @@ const AddProduct = ({ values, setValues, initialState, setIsOpen, add, setAdd })
         value={values.price}
         placeholder="price"
         onChange={handleInput}
-        className='inputFields'
+        className="inputFields"
       />
       <input
         type="number"
@@ -122,9 +136,11 @@ const AddProduct = ({ values, setValues, initialState, setIsOpen, add, setAdd })
         value={values.rating}
         placeholder="rating"
         onChange={handleInput}
-        className='inputFields'
+        className="inputFields"
       />
-      <button className='inputBtn' type="submit">{add ? 'ADD' : "UPDATE"}</button>
+      <button className="inputBtn" type="submit">
+        {add ? "ADD" : "UPDATE"}
+      </button>
     </form>
   );
 };

@@ -11,7 +11,7 @@ import { getProduct } from "../redux/cart/cartActions";
 import { useDispatch } from "react-redux";
 
 const PcDetails = (props) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const [pcs, setPcs] = useState([]);
   const id = props.match.params.id;
@@ -44,12 +44,11 @@ const PcDetails = (props) => {
 
   return (
     <motion.div
-    
-    exit={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    initial={{ opacity: 0 }}
-  >
-     <div
+      exit={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+    >
+      <div
         style={{
           paddingTop: "6rem",
           display: "flex",
@@ -81,7 +80,6 @@ const PcDetails = (props) => {
             ))}
         </AutoplaySlider>
 
-
         <div
           style={{
             display: "flex",
@@ -101,9 +99,16 @@ const PcDetails = (props) => {
           >
             ${pcs.price}
           </div>
-          <div style={{display:"flex", justifyContent:"center"}}>
-          <button className='detailsBtn' onClick={()=>dispatch(getProduct(pcs))} >ADD TO CART</button>
-
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <button
+              className="detailsBtn"
+              onClick={() => {
+                pcs.id = id;
+                dispatch(getProduct(pcs));
+              }}
+            >
+              ADD TO CART
+            </button>
           </div>
         </div>
       </div>

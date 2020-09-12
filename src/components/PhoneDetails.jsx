@@ -11,7 +11,7 @@ import { getProduct } from "../redux/cart/cartActions";
 import { useDispatch } from "react-redux";
 
 const PhoneDetails = (props) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const [phones, setPhones] = useState([]);
   const id = props.match.params.id;
@@ -23,7 +23,6 @@ const PhoneDetails = (props) => {
       .then(function (doc) {
         if (doc.exists) {
           setPhones(doc.data());
-          // console.log("Document data:", doc.data());
         } else {
           console.log("No such document!");
         }
@@ -44,12 +43,11 @@ const PhoneDetails = (props) => {
 
   return (
     <motion.div
-      
       exit={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
     >
-     <div
+      <div
         style={{
           paddingTop: "6rem",
           display: "flex",
@@ -81,7 +79,6 @@ const PhoneDetails = (props) => {
             ))}
         </AutoplaySlider>
 
-
         <div
           style={{
             display: "flex",
@@ -101,9 +98,16 @@ const PhoneDetails = (props) => {
           >
             ${phones.price}
           </div>
-          <div style={{display:"flex", justifyContent:"center"}}>
-          <button className='detailsBtn' onClick={()=>dispatch(getProduct(phones))} >ADD TO CART</button>
-
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <button
+              className="detailsBtn"
+              onClick={() => {
+                phones.id = id;
+                dispatch(getProduct(phones));
+              }}
+            >
+              ADD TO CART
+            </button>
           </div>
         </div>
       </div>
