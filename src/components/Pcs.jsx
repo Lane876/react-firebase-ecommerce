@@ -202,17 +202,17 @@ const Pcs = ({ user }) => {
           width: "80%",
           margin: "0 auto",
           paddingBottom: "2rem",
-          justifyContent: "space-evenly",
+          justifyContent: "flex-start",
           flexWrap: "wrap",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", padding: "1rem" }}>
+        <div style={{ display: "flex", justifyContent:"space-between", alignItems: "center", width:"500px"}}>
           <input
             type="text"
             placeholder="Search..."
             style={{
               padding: "1rem",
-              width: "400px",
+              width:"100%",
               border: "1px solid orange",
               borderRadius: "8px",
               outlineColor: "orange",
@@ -221,16 +221,16 @@ const Pcs = ({ user }) => {
           />
           <AiOutlineSearch
             size="30px"
-            style={{ marginLeft: "-40px", color: "orange" }}
+            style={{ marginLeft: "-55px", color: "orange", padding:"1rem" }}
           />
         </div>
         <select
           style={{
+            padding:"1rem",
             width: "300px",
             border: "1px solid orange",
             borderRadius: "8px",
             outlineColor: "orange",
-            padding: "1rem",
           }}
           onChange={handleSelect}
         >

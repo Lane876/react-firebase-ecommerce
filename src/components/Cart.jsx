@@ -53,9 +53,10 @@ const Cart = () => {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
+            width:"300px"
           }}
         >
-          <span> Your Cart is Empty </span>{" "}
+          <span style={{}} > Your Cart is Empty </span>{" "}
           <FaRegSadCry
             size="40px"
             style={{ padding: "1rem", color: "orange" }}
@@ -181,8 +182,8 @@ const Cart = () => {
             <button onClick={handleClear} className="landingbtn">
               CLEAR CART
             </button>
-            <h2>Total: ${total}</h2>
-            <StripeButton price={total} />
+            <h2 style={{padding:"1rem"}}>Total: ${total}</h2>
+            <StripeButton price={total}  />
           </div>
         </div>
       )}
