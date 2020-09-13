@@ -21,7 +21,7 @@ const Laptops = ({ user }) => {
   const admin = user?.uid === "hwdNGlf4e4Qh8488jCJlxpOjEwl1";
   const dispatch = useDispatch();
   const initialState = {
-    id: "",
+    id: "add",
     option: "Laptops",
     image_def: "",
     image_1: "",
