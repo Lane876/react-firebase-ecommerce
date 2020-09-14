@@ -1,10 +1,12 @@
 import React from "react";
 import { Zoom } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
-import comp1 from "../images/comp1.jpg";
 import comp from "../images/comp.jpg";
-import comp3 from "../images/comp3.jpg";
 import comp4 from "../images/comp4.jpg";
+import comp6 from "../images/comp6.jpg";
+import comp8 from "../images/comp8.jpg";
+import comp9 from "../images/comp9.jpg";
+import comp10 from "../images/comp10.jpg";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 
@@ -44,7 +46,7 @@ const properties = {
 };
 
 const Slider = () => {
-  const images = [comp, comp1, comp3, comp4];
+  const images = [comp, comp4, comp6, comp8, comp9, comp10];
 
   return (
     <div style={{ width: "100%" }}>

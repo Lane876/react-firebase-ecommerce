@@ -193,7 +193,7 @@ code {
 }
 
 .about {
-  background-color: orange;
+  background-color: rgba(245, 171, 53, .2)
 }
 
 .featuredbtn {
@@ -248,13 +248,16 @@ code {
 }
 
 .addToCartBtn{
-  padding: .5rem;
-  cursor: pointer;
-  font-weight: 700;
-  border: 1px solid black;
+  /* padding: .5rem; */
+  /* cursor: pointer; */
+  /* font-weight: 700; */
+  /* border: 1px solid black; */
   background-color: rgba(0, 0, 0, 0.5);
-  letter-spacing: 2px;
-  font-size: 1rem;
+  /* letter-spacing: 2px; */
+  /* font-size: 1rem; */
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
   width: 100%;
   color: orange;
   position: absolute;

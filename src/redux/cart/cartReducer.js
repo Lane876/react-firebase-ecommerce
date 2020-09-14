@@ -96,9 +96,6 @@ const cartReducer = (state = initialState, action) => {
       total = parseFloat(total.toFixed(2));
       return { ...state, total, quantity };
 
-    case SORT:
-      return { ...state, product: action.payload };
-
     case OPTION:
       return { ...state, option: action.payload };
 

@@ -215,13 +215,20 @@ const Laptops = ({ user }) => {
           flexWrap: "wrap",
         }}
       >
-        <div style={{ display: "flex", justifyContent:"space-between", alignItems: "center", width:"500px"}}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            width: "500px",
+          }}
+        >
           <input
             type="text"
             placeholder="Search..."
             style={{
               padding: "1rem",
-              width:"100%",
+              width: "100%",
               border: "1px solid orange",
               borderRadius: "8px",
               outlineColor: "orange",
@@ -230,12 +237,12 @@ const Laptops = ({ user }) => {
           />
           <AiOutlineSearch
             size="30px"
-            style={{ marginLeft: "-55px", color: "orange", padding:"1rem" }}
+            style={{ marginLeft: "-55px", color: "orange", padding: "1rem" }}
           />
         </div>
         <select
           style={{
-            padding:"1rem",
+            padding: "1rem",
             width: "300px",
             border: "1px solid orange",
             borderRadius: "8px",
@@ -290,27 +297,41 @@ const Laptops = ({ user }) => {
             </Link>
             <p>{laptop.title}</p>
             <p>Price: ${laptop.price}</p>
-            <button
-              className="addToCartBtn"
-              style={{
-                display: "flex",
-                justifyContent: "space-around",
-                alignItems: "center",
-              }}
-              onClick={() => dispatch(option(laptop))}
-            >
+            <div className="addToCartBtn">
               <Link
                 to={`/laptop/${laptop.id}`}
                 style={{ textDecoration: "none", color: "orange" }}
                 onClick={() => dispatch(option(laptop))}
               >
-                <span>DETAILS</span>
-              </Link>{" "}
+                <div
+                  style={{
+                    width: "180px",
+                    background: "none",
+                    border: "none",
+                    padding: ".3rem",
+                    fontWeight: "700",
+                    fontSize: "1rem",
+                    letterSpacing: "2px",
+                    color: "orange",
+                  }}
+                  onClick={() => dispatch(option(laptop))}
+                >
+                  <span style={{ display: "flex", justifyContent: "center" }}>
+                    DETAILS
+                  </span>
+                </div>
+              </Link>
               <AiOutlineShoppingCart
                 size="25px"
+                style={{
+                  width: "30%",
+                  background: " rgba(0, 0, 0, 0.6)",
+                  padding: ".3rem",
+                  cursor: "pointer",
+                }}
                 onClick={() => dispatch(getProduct(laptop), option(laptop))}
               />{" "}
-            </button>
+            </div>
 
             {admin && (
               <>

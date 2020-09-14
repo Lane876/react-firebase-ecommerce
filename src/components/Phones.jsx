@@ -289,30 +289,41 @@ const Phones = ({ user }) => {
             </Link>
             <p style={{ wordBreak: "break-word" }}>{phone.title}</p>
             <p>Price: ${phone.price}</p>
-
-            <button
-              className="addToCartBtn"
-              style={{
-                display: "flex",
-                justifyContent: "space-around",
-                alignItems: "center",
-              }}
-              onClick={() => dispatch(option(phone))}
-            >
+            <div className="addToCartBtn">
               <Link
                 to={`/phone/${phone.id}`}
                 style={{ textDecoration: "none", color: "orange" }}
                 onClick={() => dispatch(option(phone))}
               >
-                <span>DETAILS</span>
-              </Link>{" "}
+                <div
+                  style={{
+                    width: "180px",
+                    background: "none",
+                    border: "none",
+                    padding: ".3rem",
+                    fontWeight: "700",
+                    fontSize: "1rem",
+                    letterSpacing: "2px",
+                    color: "orange",
+                  }}
+                  onClick={() => dispatch(option(phone))}
+                >
+                  <span style={{ display: "flex", justifyContent: "center" }}>
+                    DETAILS
+                  </span>
+                </div>
+              </Link>
               <AiOutlineShoppingCart
                 size="25px"
-                onClick={() =>
-                  dispatch(getProduct(phone, phone.id), option(phone))
-                }
+                style={{
+                  width: "30%",
+                  background: " rgba(0, 0, 0, 0.6)",
+                  padding: ".3rem",
+                  cursor: "pointer",
+                }}
+                onClick={() => dispatch(getProduct(phone), option(phone))}
               />{" "}
-            </button>
+            </div>
             {admin && (
               <>
                 <div

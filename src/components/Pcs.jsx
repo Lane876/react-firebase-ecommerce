@@ -283,27 +283,41 @@ const Pcs = ({ user }) => {
             </Link>
             <p>{pc.title}</p>
             <p>Price: ${pc.price}</p>
-            <button
-              className="addToCartBtn"
-              style={{
-                display: "flex",
-                justifyContent: "space-around",
-                alignItems: "center",
-              }}
-              onClick={() => dispatch(option(pc))}
-            >
+            <div className="addToCartBtn">
               <Link
                 to={`/pc/${pc.id}`}
                 style={{ textDecoration: "none", color: "orange" }}
                 onClick={() => dispatch(option(pc))}
               >
-                <span>DETAILS</span>
-              </Link>{" "}
+                <div
+                  style={{
+                    width: "180px",
+                    background: "none",
+                    border: "none",
+                    padding: ".3rem",
+                    fontWeight: "700",
+                    fontSize: "1rem",
+                    letterSpacing: "2px",
+                    color: "orange",
+                  }}
+                  onClick={() => dispatch(option(pc))}
+                >
+                  <span style={{ display: "flex", justifyContent: "center" }}>
+                    DETAILS
+                  </span>
+                </div>
+              </Link>
               <AiOutlineShoppingCart
                 size="25px"
+                style={{
+                  width: "30%",
+                  background: " rgba(0, 0, 0, 0.6)",
+                  padding: ".3rem",
+                  cursor: "pointer",
+                }}
                 onClick={() => dispatch(getProduct(pc), option(pc))}
               />{" "}
-            </button>
+            </div>
             {admin && (
               <>
                 <div
