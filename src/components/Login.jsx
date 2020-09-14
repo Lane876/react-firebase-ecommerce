@@ -52,15 +52,18 @@ const Login = () => {
   }
   return (
     <motion.div
-      className="login-container"
+      style={{maxWidth:"500px", margin:"0 auto"}}
       exit={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
     >
+      <div className="login-container">
+
+      
       <div className="lg">
         <form
           onSubmit={handleSubmit}
-          style={{ display: "flex", flexDirection: "column", width:"100%" }}
+          style={{ display: "flex", flexDirection: "column"}}
         >
           <Link to="/" style={{ margin: "0 auto" }}>
             <img src={logo} alt="logo login" width="70px" />
@@ -105,6 +108,7 @@ const Login = () => {
               color: "#fff",
               fontWeight: "600",
               cursor: "pointer",
+              
             }}
             type="submit"
             onClick={login}
@@ -187,6 +191,7 @@ const Login = () => {
             Sign In with Facebook
           </button>
         </div>
+      </div>
       </div>
     </motion.div>
   );

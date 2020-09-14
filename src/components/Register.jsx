@@ -58,11 +58,15 @@ const Register = () => {
 
   return (
     <motion.div
-      className="login-container"
+    style={{maxWidth:"500px", margin:"0 auto"}}
+      
       exit={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
     >
+      <div className="login-container">
+
+    
       <div className="lg">
         <form
           onSubmit={handleSubmit}
@@ -136,7 +140,7 @@ const Register = () => {
         </form>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <p></p>
-          <p>
+          <p style={{maxWidth:"300px"}}>
             Already have an account?{" "}
             <Link
               to="/login"
@@ -197,6 +201,7 @@ const Register = () => {
             Sign In with Facebook
           </button>
         </div>
+      </div>
       </div>
     </motion.div>
   );

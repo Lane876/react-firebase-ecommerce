@@ -1,5 +1,5 @@
-*:focus{
-  outline: none
+*:focus {
+  outline: none;
 }
 
 body {
@@ -52,16 +52,24 @@ code {
 }
 
 .login-container {
-  width: 450px;
-  margin: 5rem auto;
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
   
+  margin: 5rem auto;
+
+}
+
+.login-container .lg form {
+  width: 100%;
 }
 
 .lg {
+  
   background-color: #e8e8e8;
   border-radius: 8px;
   padding: 1rem;
-  width: 100%;
 }
 
 .menu-link {
@@ -79,7 +87,7 @@ code {
   overflow-x: hidden;
 }
 
-.detailsBtn{
+.detailsBtn {
   outline-color: none;
   padding: 1rem;
   cursor: pointer;
@@ -90,11 +98,9 @@ code {
   background-color: orange;
   letter-spacing: 2px;
   font-size: 1rem;
-  border-radius: 2rem; 
+  border-radius: 2rem;
   transition: all 0.6s ease-in-out;
-
 }
-
 
 .detailsBtn:hover {
   background-color: #ffac33;
@@ -105,8 +111,6 @@ code {
   outline-color: #ffac33;
   border: 2px solid #f4f4f4;
   border-radius: 2rem;
-  
-
 }
 
 .landingbtn {
@@ -134,8 +138,6 @@ code {
   outline-color: #ffac33;
   border: 2px solid #f4f4f4;
   border-radius: 2rem;
-  
-
 }
 
 .mouse {
@@ -195,7 +197,7 @@ code {
 }
 
 .about {
-  background-color: rgba(245, 171, 53, .2)
+  background-color: rgba(245, 171, 53, 0.2);
 }
 
 .featuredbtn {
@@ -229,16 +231,16 @@ code {
   margin-top: 5rem;
 }
 
-.inputFields{
-  padding:.5rem;
-  margin-bottom: .5rem;
-  border: .5px solid orange;
+.inputFields {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 0.5px solid orange;
   outline-color: red;
   border-radius: 5px;
 }
 
-.inputBtn{
-  padding: .5rem;
+.inputBtn {
+  padding: 0.5rem;
   cursor: pointer;
   font-weight: 700;
   border: 1px solid orange;
@@ -249,7 +251,7 @@ code {
   font-size: 1rem;
 }
 
-.addToCartBtn{
+.addToCartBtn {
   /* padding: .5rem; */
   /* cursor: pointer; */
   /* font-weight: 700; */
@@ -257,15 +259,15 @@ code {
   background-color: rgba(0, 0, 0, 0.5);
   /* letter-spacing: 2px; */
   /* font-size: 1rem; */
-  display:flex;
+  display: flex;
   justify-content: space-between;
-  align-items:center;
+  align-items: center;
   width: 100%;
   color: orange;
   position: absolute;
   bottom: 0;
   left: 50%;
-  transform: translate(-50%)
+  transform: translate(-50%);
 }
 
 .phones {
@@ -277,11 +279,11 @@ code {
   margin-top: 5rem;
 }
 
-.submit{
+.submit {
   width: 500px;
 }
 
-.confirmBtn{
+.confirmBtn {
   cursor: pointer;
   font-weight: 700;
   border: 1px solid orange;
@@ -289,6 +291,6 @@ code {
   background-color: #e8e8e8;
   letter-spacing: 2px;
   border-radius: 5px;
-  padding:.6rem;
-  width: 70px
+  padding: 0.6rem;
+  width: 70px;
 }
