@@ -68,7 +68,7 @@ const Featured = () => {
                 borderRadius: "1rem",
               }}
             />
-            <button className="featuredbtn">PC's</button>
+            <button className="featuredbtn">PCs</button>
           </Link>
           {/* <p style={{ textAlign: "center" }}>blazing fast pc's</p> */}
         </div>

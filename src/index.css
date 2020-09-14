@@ -52,14 +52,16 @@ code {
 }
 
 .login-container {
-  width: 500px;
-  margin: 6rem auto;
+  width: 450px;
+  margin: 5rem auto;
+  
 }
 
 .lg {
   background-color: #e8e8e8;
   border-radius: 8px;
   padding: 1rem;
+  width: 100%;
 }
 
 .menu-link {

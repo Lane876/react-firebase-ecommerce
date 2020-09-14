@@ -121,7 +121,7 @@ const Header = ({ user }) => {
             style={{ textDecoration: "none", color: "black" }}
             onClick={() => setOpen(false)}
           >
-            <p className="menu-link">Pc's</p>
+            <p className="menu-link">Pcs</p>
           </Link>
           <Divider />
           {location.pathname === '/' && <Scroll

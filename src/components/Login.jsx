@@ -60,7 +60,7 @@ const Login = () => {
       <div className="lg">
         <form
           onSubmit={handleSubmit}
-          style={{ display: "flex", flexDirection: "column" }}
+          style={{ display: "flex", flexDirection: "column", width:"100%" }}
         >
           <Link to="/" style={{ margin: "0 auto" }}>
             <img src={logo} alt="logo login" width="70px" />
@@ -68,7 +68,7 @@ const Login = () => {
           <p style={{ color: "#ffac33", fontWeight: "600" }}>Sing In</p>
           <input
             style={{
-              maxWidth: "450px",
+              
               marginBottom: "1rem",
               padding: ".5rem",
               borderRadius: "5px",
@@ -82,7 +82,7 @@ const Login = () => {
           />
           <input
             style={{
-              maxWidth: "450px",
+              
               padding: ".5rem",
               borderRadius: "5px",
               border: "1px solid #ffac33",
@@ -145,7 +145,6 @@ const Login = () => {
             display: "flex",
             margin: "0 auto",
             justifyContent: "space-between",
-            maxWidth: "500px",
             alignItems: "center",
             paddingBottom: "2rem",
           }}
