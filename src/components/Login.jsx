@@ -130,7 +130,7 @@ const Login = () => {
               Forgot password?
             </Link>
           </p>
-          <p>
+          <p style={{display:"flex", flexDirection:"column"}}>
             You dont have an account?{" "}
             <Link
               to="/register"
@@ -138,6 +138,7 @@ const Login = () => {
                 textDecoration: "none",
                 color: "#ffac33",
                 fontWeight: "600",
+                alignSelf:"flex-end"
               }}
             >
               Sign Up
