@@ -11,13 +11,12 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useSelector } from "react-redux";
 
 const Header = ({ user }) => {
- 
   const state = useSelector((state) => state.product.product);
   // const qty = useSelector((state) => state.product.quantity);
   // console.log(qty);
-  
+
   const history = useHistory();
-  const location = useLocation()
+  const location = useLocation();
   const auth = app.auth();
   const logout = async () => {
     await auth.signOut();
@@ -124,27 +123,26 @@ const Header = ({ user }) => {
             <p className="menu-link">Pcs</p>
           </Link>
           <Divider />
-          {location.pathname === '/' && <Scroll
-            activeClass="active"
-            to="footer"
-            spy={true}
-            smooth={true}
-            hashSpy={true}
-            offset={50}
-            duration={1000}
-            delay={100}
-            isDynamic={true}
-            ignoreCancelEvents={false}
-            style={{
-              textDecoration: "none",
-              color: "black",
-              cursor: "pointer",
-            }}
-            onClick={() => setOpen(false)}
-          >
-            <p className="menu-link">Contact</p>
-          </Scroll>}
-          
+          {location.pathname === "/" && (
+            <Scroll
+              to="footer"
+              spy={true}
+              smooth={true}
+              offset={50}
+              duration={1000}
+              delay={100}
+              isDynamic={true}
+              ignoreCancelEvents={false}
+              style={{
+                textDecoration: "none",
+                color: "black",
+                cursor: "pointer",
+              }}
+              onClick={() => setOpen(false)}
+            >
+              <p className="menu-link">Contact</p>
+            </Scroll>
+          )}
         </div>
       </Drawer>
       {/* <div id="header"> */}
@@ -173,25 +171,27 @@ const Header = ({ user }) => {
                 size="30px"
                 style={{ marginRight: "3.5rem" }}
               />
-              {state.length !== 0 && <div
-                style={{
-                  position: "absolute",
-                  top: "-7px",
-                  left: "18px",
-                  borderRadius: "50%",
-                  backgroundColor: "orange",
-                  width: "1.5rem",
-                  height: "1.5rem",
-                  color: "black",
-                  fontWeight: "600",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                {state.length}
-                {/* {qty} */}
-              </div>}
+              {state.length !== 0 && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "-7px",
+                    left: "18px",
+                    borderRadius: "50%",
+                    backgroundColor: "orange",
+                    width: "1.5rem",
+                    height: "1.5rem",
+                    color: "black",
+                    fontWeight: "600",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  {state.length}
+                  {/* {qty} */}
+                </div>
+              )}
             </Link>
           </div>
           <Link

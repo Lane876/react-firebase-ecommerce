@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-
 import { db } from "../config";
-import Footer from "./Footer";
 import AwesomeSlider from "react-awesome-slider";
 import withAutoplay from "react-awesome-slider/dist/autoplay";
 import "react-awesome-slider/dist/styles.css";

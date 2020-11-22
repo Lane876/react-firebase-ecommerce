@@ -4,11 +4,9 @@ import { Link } from "react-scroll";
 const Scroll = () => {
   return (
     <Link
-      activeClass="active"
       to="scroll"
       spy={true}
       smooth={true}
-      hashSpy={true}
       offset={10}
       duration={1000}
       delay={100}
